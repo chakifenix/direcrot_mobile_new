@@ -133,7 +133,7 @@ class _ContingentStudentPageState extends State<ContingentStudentPage> {
                                 .copyWith(color: Colors.white),
                           ),
                           SizedBox(
-                              width: MediaQuery.of(context).size.width - 120,
+                              // width: MediaQuery.of(context).size.width - 120,
                               child: Text(
                                 'manage'.tr(),
                                 style: AppTheme.mainAppBarSmallTextStyle

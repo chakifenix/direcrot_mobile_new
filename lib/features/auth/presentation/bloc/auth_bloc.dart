@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:direcrot_mobile_new/features/auth/domain/entities/user.dart';
 import 'package:direcrot_mobile_new/features/auth/domain/usecases/save_phone.dart';
 import 'package:direcrot_mobile_new/features/auth/domain/usecases/user_iin_login.dart';
 import 'package:direcrot_mobile_new/features/auth/domain/usecases/user_sms_login.dart';
 import 'package:direcrot_mobile_new/services/local_storage.dart';
 import 'package:direcrot_mobile_new/services/session_manager/session_controller.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -71,6 +74,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   void _getUserInfo(LoadUserInfo event, Emitter<AuthState> emit) async {
     final name = await LocalStorage().readValue('name');
-    emit(state.copyWith(fullName: name, status: AuthStatus.success));
+    final genderId = await LocalStorage().readValue('genderId');
+    String? imagePath = await LocalStorage().readValue('imagePath');
+    if (await File(imagePath ?? '').exists()) {
+      debugPrint('Файл найден: $imagePath');
+    } else {
+      imagePath = null;
+      debugPrint('Файл не найден: $imagePath');
+    }
+    emit(state.copyWith(
+        genderId: genderId,
+        fullName: name,
+        imagePath: imagePath,
+        status: AuthStatus.success));
   }
 }

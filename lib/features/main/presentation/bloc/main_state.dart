@@ -12,6 +12,7 @@ class MainState extends Equatable {
   final String? name;
   final String? schoolName;
   final String? profileImage;
+  final String? genderId;
   final LicenseEntity? license;
 
   const MainState(
@@ -22,6 +23,7 @@ class MainState extends Equatable {
       this.name,
       this.schoolName,
       this.profileImage,
+      this.genderId,
       this.license});
 
   @override
@@ -33,6 +35,7 @@ class MainState extends Equatable {
         name,
         schoolName,
         profileImage,
+        genderId,
         license
       ];
 
@@ -54,6 +57,7 @@ class MainState extends Equatable {
       String? name,
       String? schoolName,
       String? profileImage,
+      String? genderId,
       LicenseEntity? license}) {
     return MainState(
         status: status ?? this.status,
@@ -63,6 +67,7 @@ class MainState extends Equatable {
         name: name ?? this.name,
         schoolName: schoolName ?? this.schoolName,
         profileImage: profileImage ?? this.profileImage,
+        genderId: genderId ?? this.genderId,
         license: license ?? this.license);
   }
 }

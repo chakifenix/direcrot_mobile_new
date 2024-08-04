@@ -73,7 +73,7 @@ class _CamerasPageState extends State<CamerasPage> {
                                 .copyWith(color: Colors.white),
                           ),
                           SizedBox(
-                              width: MediaQuery.of(context).size.width - 120,
+                              // width: MediaQuery.of(context).size.width - 120,
                               child: Text(
                                 'onlineStream'.tr(),
                                 style: AppTheme.mainAppBarSmallTextStyle

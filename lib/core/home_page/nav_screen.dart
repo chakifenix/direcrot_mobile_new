@@ -51,32 +51,42 @@ class _NavScreenState extends State<NavScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(
-          index: selectedTab,
-          children: items
-              .map((page) => Navigator(
-                    key: page.navKey,
-                    onGenerateInitialRoutes: (navigator, initialRoute) {
-                      return [
-                        MaterialPageRoute(builder: (context) => page.page)
-                      ];
-                    },
-                  ))
-              .toList()),
-      bottomNavigationBar: NavBar(
-          pageIndex: selectedTab,
-          onTap: (index) {
-            if (index == selectedTab) {
-              items[index].navKey.currentState?.popUntil((route) {
-                return route.isFirst;
-              });
+    return WillPopScope(
+      onWillPop: () {
+            if (items[selectedTab].navKey.currentState?.canPop() ?? false) {
+              items[selectedTab].navKey.currentState?.pop();
+              return Future.value(false);
             } else {
-              setState(() {
-                selectedTab = index;
-              });
+              return Future.value(true);
             }
-          }),
+          },
+      child: Scaffold(
+        body: IndexedStack(
+            index: selectedTab,
+            children: items
+                .map((page) => Navigator(
+                      key: page.navKey,
+                      onGenerateInitialRoutes: (navigator, initialRoute) {
+                        return [
+                          MaterialPageRoute(builder: (context) => page.page)
+                        ];
+                      },
+                    ))
+                .toList()),
+        bottomNavigationBar: NavBar(
+            pageIndex: selectedTab,
+            onTap: (index) {
+              if (index == selectedTab) {
+                items[index].navKey.currentState?.popUntil((route) {
+                  return route.isFirst;
+                });
+              } else {
+                setState(() {
+                  selectedTab = index;
+                });
+              }
+            }),
+      ),
     );
   }
 }

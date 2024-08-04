@@ -2,7 +2,6 @@ import 'package:direcrot_mobile_new/core/theme/theme.dart';
 import 'package:direcrot_mobile_new/core/common/widgets/button.dart';
 import 'package:direcrot_mobile_new/features/auth/presentation/pages/login_page.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

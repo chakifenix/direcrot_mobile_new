@@ -168,5 +168,8 @@
     "allActive":"Display all action",
     "changePhoto":"Change photo",
     "statistics":"Statistics",
-    "code":"A 6-digit code"
+    "code":"A 6-digit code",
+    "reset":"Reset",
+    "installed":"Installed",
+    "noInstalled":"Not installed"
 }

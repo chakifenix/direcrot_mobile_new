@@ -86,11 +86,17 @@ class _MainPageState extends State<MainPage> {
                                           fit: BoxFit.cover,
                                         ),
                                       )
-                                    : Image.asset(
-                                        'images/directorLogo.png',
-                                        width: 58.w,
-                                        height: 58.h,
-                                      ),
+                                    : (state.genderId == '2')
+                                        ? Image.asset(
+                                            'images/directorLogo.png',
+                                            width: 58.w,
+                                            height: 58.h,
+                                          )
+                                        : Image.asset(
+                                            'images/profile.png',
+                                            width: 58.w,
+                                            height: 58.h,
+                                          ),
                                 SizedBox(
                                   width: 13.w,
                                 ),

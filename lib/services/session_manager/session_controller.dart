@@ -8,6 +8,9 @@ class SessionController {
     localStorage.setValue('name', user?.fullName ?? '');
     localStorage.setValue('email', user?.email ?? '');
     localStorage.setValue('phoneNumber', user?.phoneNumber ?? '');
+    localStorage.setValue('iin', user?.iin ?? '');
+    localStorage.setValue('genderId', user?.genderId.toString() ?? '');
+    localStorage.setValue('birthDay', user?.birthDay ?? '');
     localStorage.setValue('token', user?.token ?? '');
     localStorage.setValue('tokenType', user?.tokenType ?? '');
     localStorage.setValue(

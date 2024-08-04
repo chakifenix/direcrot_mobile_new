@@ -118,12 +118,12 @@ class _PitaniaPageState extends State<PitaniaPage> {
                               .copyWith(color: Colors.white),
                         ),
                         SizedBox(
-                            width: MediaQuery.of(context).size.width - 120,
+                            // width: MediaQuery.of(context).size.width - 120,
                             child: Text(
-                              'manage'.tr(),
-                              style: AppTheme.mainAppBarSmallTextStyle
-                                  .copyWith(color: Colors.white),
-                            ))
+                          'manage'.tr(),
+                          style: AppTheme.mainAppBarSmallTextStyle
+                              .copyWith(color: Colors.white),
+                        ))
                       ],
                     ),
                   ],
@@ -149,7 +149,7 @@ class _PitaniaPageState extends State<PitaniaPage> {
                             style: AppTheme.mainAppBarTextStyle,
                           ),
                           Text(
-                            'Данные зарегистрированных пользователей',
+                            'regisData'.tr(),
                             style: AppTheme.mainSmallTextStyle,
                           ),
                           Row(
@@ -159,7 +159,7 @@ class _PitaniaPageState extends State<PitaniaPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Всего',
+                                    'totalB'.tr(),
                                     style: AppTheme.infoRegularTextStyle
                                         .copyWith(fontWeight: FontWeight.bold),
                                   ),
@@ -168,7 +168,7 @@ class _PitaniaPageState extends State<PitaniaPage> {
                                     style: AppTheme.infoRegularTextStyle,
                                   ),
                                   Text(
-                                    '1-4 класс',
+                                    '1-4 ${'class'.tr()}',
                                     style: AppTheme.infoRegularTextStyle,
                                   ),
                                 ],
@@ -320,8 +320,33 @@ class _PitaniaPageState extends State<PitaniaPage> {
                               child: const Icon(Icons.calendar_month_outlined))
                         ],
                       ),
-                      Text(
-                          '${DateFormat('dd.MM.yyyy').format(selectedDates.start)}-${DateFormat('dd.MM.yyyy').format(selectedDates.end)}'),
+                      (dateFrom == null)
+                          ? SizedBox()
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                    '${DateFormat('dd.MM.yyyy').format(selectedDates.start)}-${DateFormat('dd.MM.yyyy').format(selectedDates.end)}'),
+                                GestureDetector(
+                                  onTap: () {
+                                    dateFrom =null;
+                                    dateTo = null;
+                                    context.read<PitaniaBloc>().add(PitaniaListFetch(
+                                    page: 1,
+                                    classFrom: null,
+                                    classTo: null,
+                                    dateFrom: dateFrom,
+                                    dateTo: dateTo));
+                                  },
+                                  child: Text(
+                                    'reset'.tr(),
+                                    style: const TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        color: Colors.blue),
+                                  ),
+                                )
+                              ],
+                            ),
                       (state.isSuccess)
                           ? Expanded(
                               child: PitaniaList(

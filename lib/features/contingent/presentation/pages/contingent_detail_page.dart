@@ -6,7 +6,6 @@ import 'package:direcrot_mobile_new/features/contingent/presentation/bloc/contin
 import 'package:direcrot_mobile_new/features/contingent/presentation/widgets/contingent_list.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -144,7 +143,7 @@ class _ContingentDetailPageState extends State<ContingentDetailPage> {
                               .copyWith(color: Colors.white),
                         ),
                         SizedBox(
-                            width: MediaQuery.of(context).size.width - 120,
+                            // width: MediaQuery.of(context).size.width - 120,
                             child: Text(
                               'manage'.tr(),
                               style: AppTheme.mainAppBarSmallTextStyle

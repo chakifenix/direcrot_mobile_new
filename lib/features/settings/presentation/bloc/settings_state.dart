@@ -12,6 +12,7 @@ class SettingsState extends Equatable {
   final String? email;
   final String? phoneNumber;
   final String? imagePath;
+  final String? genderId;
   final TextEditingController? phoneController;
   final String? successData;
   final LicenseEntity? license;
@@ -25,6 +26,7 @@ class SettingsState extends Equatable {
       this.email,
       this.phoneNumber,
       this.imagePath,
+      this.genderId,
       this.phoneController,
       this.successData,
       this.license,
@@ -39,6 +41,7 @@ class SettingsState extends Equatable {
         email,
         phoneNumber,
         imagePath,
+        genderId,
         phoneController,
         successData,
         license,
@@ -63,6 +66,7 @@ class SettingsState extends Equatable {
       String? email,
       String? phoneNumber,
       String? imagePath,
+      String? genderId,
       TextEditingController? phoneController,
       String? successData,
       LicenseEntity? license,
@@ -75,6 +79,7 @@ class SettingsState extends Equatable {
         email: email ?? this.email,
         phoneNumber: phoneNumber ?? this.phoneNumber,
         imagePath: imagePath ?? this.imagePath,
+        genderId: genderId ?? this.genderId,
         phoneController: phoneController ?? this.phoneController,
         successData: successData ?? this.successData,
         license: license ?? this.license,

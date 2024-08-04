@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:direcrot_mobile_new/core/common/widgets/dots.dart';
 import 'package:direcrot_mobile_new/core/common/widgets/keyboard_number.dart';
 import 'package:direcrot_mobile_new/features/auth/presentation/bloc/auth_bloc.dart';
@@ -59,7 +61,26 @@ class _PinScreenState extends State<PinScreen> {
                     CircleAvatar(
                       radius: 45.r,
                       backgroundColor: Colors.transparent,
-                      child: Image.asset('images/woman.png'),
+                      child: (state.imagePath != null)
+                          ? ClipOval(
+                              child: Image.file(
+                                File(state.imagePath!),
+                                width: 58.w,
+                                height: 58.h,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          : (state.genderId == '2')
+                              ? Image.asset(
+                                  'images/directorLogo.png',
+                                  width: 58.w,
+                                  height: 58.h,
+                                )
+                              : Image.asset(
+                                  'images/profile.png',
+                                  width: 58.w,
+                                  height: 58.h,
+                                ),
                     ),
                     SizedBox(
                       height: 15.h,

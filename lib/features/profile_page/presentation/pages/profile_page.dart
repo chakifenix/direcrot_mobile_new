@@ -9,7 +9,6 @@ import 'package:direcrot_mobile_new/features/profile_page/presentation/widgets/p
 import 'package:direcrot_mobile_new/features/profile_page/presentation/widgets/schedule_list.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -201,10 +200,14 @@ class _ProfilePageState extends State<ProfilePage> {
                           SizedBox(
                             width: 13.w,
                           ),
-                          Text(
-                            'Не установлено',
+                          (lastVisit=='')?Text(
+                            'noInstalled'.tr(),
                             style: AppTheme.activityRegularTextStyle
                                 .copyWith(color: const Color(0xFFE22626)),
+                          ):Text(
+                            'installed'.tr(),
+                            style: AppTheme.activityRegularTextStyle
+                                .copyWith(color: const Color(0xFF38AE00)),
                           )
                         ],
                       ),

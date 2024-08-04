@@ -39,6 +39,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     final res = await _getTodayStats(NoParams(), null);
     final name = await LocalStorage().readValue('name');
     final schoolName = await LocalStorage().readValue('schoolName');
+    final genderId = await LocalStorage().readValue('genderId');
     String? profileImage = await LocalStorage().readValue('imagePath');
     if (await File(profileImage ?? '').exists()) {
       print('Файл найден: $profileImage');
@@ -54,6 +55,7 @@ class MainBloc extends Bloc<MainEvent, MainState> {
             todayStats: r,
             name: name,
             schoolName: schoolName,
-            profileImage: profileImage)));
+            profileImage: profileImage,
+            genderId: genderId)));
   }
 }

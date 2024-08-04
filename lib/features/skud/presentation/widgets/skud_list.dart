@@ -84,12 +84,17 @@ class SkudList extends StatelessWidget {
                     SizedBox(
                       width: 46.w,
                     ),
-                    Text(
-                      (listNames[index].passTypeId == 1)
-                          ? 'enter'.tr()
-                          : 'exit'.tr(),
-                      style: AppTheme.contingentDeatilRegularTextStyle,
-                    )
+                    (listNames[index].passTypeId == 1)
+                        ? Text(
+                            'enter'.tr(),
+                            style: AppTheme.contingentDeatilRegularTextStyle
+                                .copyWith(color: Colors.green),
+                          )
+                        : Text(
+                            'exit'.tr(),
+                            style: AppTheme.contingentDeatilRegularTextStyle
+                                .copyWith(color: Colors.red),
+                          )
                   ],
                 ),
               ),

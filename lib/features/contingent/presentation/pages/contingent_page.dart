@@ -5,6 +5,7 @@ import 'package:direcrot_mobile_new/features/contingent/presentation/pages/conti
 import 'package:direcrot_mobile_new/features/contingent_student/presentation/pages/contingent_student_page.dart';
 import 'package:direcrot_mobile_new/features/lgotniki/presentation/pages/lgotniki_page.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,6 +32,8 @@ class _ContingentPageState extends State<ContingentPage> {
     context.read<ContingentBloc>().add(ContingentDataFetch());
     await Future.any([bloc, timeout]);
   }
+
+  int touchedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -170,17 +173,56 @@ class _ContingentPageState extends State<ContingentPage> {
                                   )
                                 ],
                               ),
+                              // Container(
+                              //   padding: EdgeInsets.all(9.w),
+                              //   width: 86.w,
+                              //   height: 86.h,
+                              //   child: const CircularProgressIndicator(
+                              //     value: 0.7,
+                              //     color: Color(0xFF008FCC),
+                              //     backgroundColor: Color(0xFFFFB800),
+                              //     strokeWidth: 18,
+                              //   ),
+                              // )
                               Container(
-                                padding: EdgeInsets.all(9.w),
                                 width: 86.w,
                                 height: 86.h,
-                                child: const CircularProgressIndicator(
-                                  value: 0.7,
-                                  color: Color(0xFF008FCC),
-                                  backgroundColor: Color(0xFFFFB800),
-                                  strokeWidth: 18,
+                                child: PieChart(
+                                  PieChartData(
+                                    pieTouchData: PieTouchData(
+                                      touchCallback: (FlTouchEvent event,
+                                          pieTouchResponse) {
+                                        setState(() {
+                                          if (!event
+                                                  .isInterestedForInteractions ||
+                                              pieTouchResponse == null ||
+                                              pieTouchResponse.touchedSection ==
+                                                  null) {
+                                            touchedIndex = -1;
+                                            return;
+                                          }
+                                          touchedIndex = pieTouchResponse
+                                              .touchedSection!
+                                              .touchedSectionIndex;
+                                        });
+                                      },
+                                    ),
+                                    borderData: FlBorderData(
+                                      show: false,
+                                    ),
+                                    sectionsSpace: 0,
+                                    centerSpaceRadius: 25,
+                                    sections: showingSections(
+                                        student:
+                                            state.contingentData?.student ?? 0,
+                                        teacher:
+                                            state.contingentData?.teacher ?? 0,
+                                        personal:
+                                            state.contingentData?.personnel ??
+                                                0),
+                                  ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ],
@@ -369,5 +411,60 @@ class _ContingentPageState extends State<ContingentPage> {
         ),
       ),
     );
+  }
+
+  List<PieChartSectionData> showingSections(
+      {required int student, required int personal, required int teacher}) {
+    int allCount = student + personal + teacher;
+    return List.generate(3, (i) {
+      final isTouched = i == touchedIndex;
+      final fontSize = isTouched ? 25.0 : 14.sp;
+      final radius = isTouched ? 28.0 : 20.0;
+      const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
+      switch (i) {
+        case 0:
+          return PieChartSectionData(
+            color: Colors.red,
+            value: teacher.toDouble(),
+            title: (allCount != 0) ? '${(teacher * 100) ~/ allCount}%' : '0',
+            radius: radius,
+            titleStyle: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              shadows: shadows,
+            ),
+          );
+        case 1:
+          return PieChartSectionData(
+            color: Colors.blue,
+            value: student.toDouble(),
+            title: (allCount != 0) ? '${(student * 100) ~/ allCount}%' : '0',
+            radius: radius,
+            titleStyle: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              shadows: shadows,
+            ),
+          );
+        case 2:
+          return PieChartSectionData(
+            color: Colors.yellow,
+            value: personal.toDouble(),
+            title: (allCount != 0) ? '${(personal * 100) ~/ allCount}%' : '0',
+            radius: radius,
+            titleStyle: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+              shadows: shadows,
+            ),
+          );
+
+        default:
+          throw Error();
+      }
+    });
   }
 }

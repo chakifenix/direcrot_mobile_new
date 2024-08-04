@@ -37,6 +37,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     final schoolName = await LocalStorage().readValue('schoolName');
     final phoneNumber = await LocalStorage().readValue('phoneNumber');
     final email = await LocalStorage().readValue('email');
+    final genderId = await LocalStorage().readValue('genderId');
     String? profileImage = await LocalStorage().readValue('imagePath');
     if (await File(profileImage ?? '').exists()) {
       debugPrint('Файл найден: $profileImage');
@@ -51,6 +52,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         email: email,
         phoneNumber: phoneNumber,
         imagePath: profileImage,
+        genderId: genderId,
         phoneController: TextEditingController(text: phoneNumber)));
   }
 
@@ -71,9 +73,11 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   void _uploadFile(UploadFile event, Emitter<SettingsState> emit) async {
     final returnedImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
-    SessionController().saveUserImage(returnedImage!.path);
-    emit(state.copyWith(
-        status: SettingsStatus.success, imagePath: returnedImage.path));
+    if (returnedImage != null) {
+      SessionController().saveUserImage(returnedImage.path);
+      emit(state.copyWith(
+          status: SettingsStatus.success, imagePath: returnedImage.path));
+    }
   }
 
   void _phoneNumberFetch(

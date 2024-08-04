@@ -79,21 +79,29 @@ class _SettingsPageState extends State<SettingsPage> {
                       child: Row(
                         children: [
                           Container(
-                              decoration: const BoxDecoration(
-                                  shape: BoxShape.circle, color: Colors.white),
-                              child: (state.imagePath != null)
-                                  ? ClipOval(
-                                      child: Image.file(
-                                        File(state.imagePath!),
+                            decoration: const BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.white),
+                            child: (state.imagePath != null)
+                                ? ClipOval(
+                                    child: Image.file(
+                                      File(state.imagePath!),
+                                      width: 58.w,
+                                      height: 58.h,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  )
+                                : (state.genderId == '2')
+                                    ? Image.asset(
+                                        'images/directorLogo.png',
                                         width: 58.w,
                                         height: 58.h,
-                                        fit: BoxFit.cover,
+                                      )
+                                    : Image.asset(
+                                        'images/profile.png',
+                                        width: 58.w,
+                                        height: 58.h,
                                       ),
-                                    )
-                                  : Image.asset(
-                                      'images/directorLogo.png',
-                                      width: 58.w,
-                                    )),
+                          ),
                           SizedBox(
                             width: 18.w,
                           ),
@@ -337,12 +345,15 @@ class _SettingsPageState extends State<SettingsPage> {
                         padding: EdgeInsets.only(right: 80.w),
                         color: const Color(0xFF008DD6),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset('images/card_img.png'),
-                            Text(
-                              'installedDevice'.tr(),
-                              style: const TextStyle(color: Colors.white),
+                            Expanded(
+                              child: Text(
+                                textAlign: TextAlign.center,
+                                'installedDevice'.tr(),
+                                style: const TextStyle(color: Colors.white),
+                              ),
                             )
                           ],
                         ),
@@ -382,7 +393,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                   Menu(
                                     title: 'notif'.tr(),
                                     image: 'images/comment_menu.png',
-                                    color: Colors.black,
+                                    color: const Color(0xFF777777),
                                     id: 15,
                                   ),
                                   Menu(

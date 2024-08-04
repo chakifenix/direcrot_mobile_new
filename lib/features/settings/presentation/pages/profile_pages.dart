@@ -114,17 +114,26 @@ class _ProfilePageState extends State<ProfilePage> {
                         children: [
                           Column(
                             children: [
-                              selectedImage != null
-                                  ? Image.file(
-                                      selectedImage!,
-                                      width: 95.w,
-                                      height: 95.h,
+                              (state.imagePath != null)
+                                  ? ClipOval(
+                                      child: Image.file(
+                                        File(state.imagePath!),
+                                        width: 58.w,
+                                        height: 58.h,
+                                        fit: BoxFit.cover,
+                                      ),
                                     )
-                                  : Image.asset(
-                                      'images/directorLogo.png',
-                                      width: 95.w,
-                                      height: 95.h,
-                                    ),
+                                  : (state.genderId == '2')
+                                      ? Image.asset(
+                                          'images/directorLogo.png',
+                                          width: 58.w,
+                                          height: 58.h,
+                                        )
+                                      : Image.asset(
+                                          'images/profile.png',
+                                          width: 58.w,
+                                          height: 58.h,
+                                        ),
                               GestureDetector(
                                 onTap: () {
                                   _pickImageFromGallery();
