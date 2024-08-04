@@ -9,9 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PitaniaPage extends StatefulWidget {
-  const PitaniaPage({
-    super.key,
-  });
+  final title;
+  PitaniaPage({super.key, this.title});
 
   @override
   State<PitaniaPage> createState() => _PitaniaPageState();
@@ -19,6 +18,10 @@ class PitaniaPage extends StatefulWidget {
 
 class _PitaniaPageState extends State<PitaniaPage> {
   int selectedValue = 1;
+  int? classFrom;
+  int? classTo;
+  String? dateFrom;
+  String? dateTo;
   final scrollController = ScrollController();
   DateTimeRange selectedDates =
       DateTimeRange(start: DateTime.now(), end: DateTime.now());
@@ -229,7 +232,7 @@ class _PitaniaPageState extends State<PitaniaPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Профильные данные',
+                                'profileData'.tr(),
                                 style: AppTheme.mainAppBarTextStyle,
                               ),
                               Text(
@@ -262,6 +265,26 @@ class _PitaniaPageState extends State<PitaniaPage> {
                                 setState(() {
                                   selectedValue = value!;
                                 });
+                                if (value == 2) {
+                                  classFrom = 1;
+                                  classTo = 4;
+                                }
+                                if (value == 1) {
+                                  classFrom = null;
+                                  classTo = null;
+                                }
+                                if (value == 3) {
+                                  classFrom = 5;
+                                  classTo = 11;
+                                }
+
+                                context.read<PitaniaBloc>().add(
+                                    PitaniaListFetch(
+                                        page: 1,
+                                        classFrom: classFrom,
+                                        classTo: classTo,
+                                        dateFrom: dateFrom,
+                                        dateTo: dateTo));
                               },
                               hintTitle: items[0]['name'],
                             ),
@@ -271,6 +294,7 @@ class _PitaniaPageState extends State<PitaniaPage> {
                           ),
                           GestureDetector(
                               onTap: () async {
+                                final pitaniaBloc = context.read<PitaniaBloc>();
                                 final DateTimeRange? dateTimeRange =
                                     await showDateRangePicker(
                                         context: context,
@@ -280,10 +304,20 @@ class _PitaniaPageState extends State<PitaniaPage> {
                                 if (dateTimeRange != null) {
                                   setState(() {
                                     selectedDates = dateTimeRange;
+                                    dateFrom = DateFormat('yyyy-MM-dd')
+                                        .format(dateTimeRange.start);
+                                    dateTo = DateFormat('yyyy-MM-dd')
+                                        .format(dateTimeRange.end);
                                   });
                                 }
+                                pitaniaBloc.add(PitaniaListFetch(
+                                    page: 1,
+                                    classFrom: classFrom,
+                                    classTo: classTo,
+                                    dateFrom: dateFrom,
+                                    dateTo: dateTo));
                               },
-                              child: Icon(Icons.calendar_month_outlined))
+                              child: const Icon(Icons.calendar_month_outlined))
                         ],
                       ),
                       Text(

@@ -29,21 +29,8 @@ class SkudPage extends StatefulWidget {
 
 class _SkudPageState extends State<SkudPage> {
   int selectedValue = 1;
+  int? passType;
   final scrollController = ScrollController();
-
-  final List<Map<String, dynamic>> items = [
-    {'name': 'Отобразить все специальности', 'value': 1},
-    {'name': 'Отобразить все классы', 'value': 2},
-    {'name': 'Отобразить все по правам доступа', 'value': 3},
-  ];
-
-  final List<Map<String, dynamic>> itemsSkud = [
-    {'name': 'Отобразить все действия', 'value': 1},
-    {'name': 'Отобразить все классы', 'value': 2},
-    {'name': 'Отобразить все по правам доступа', 'value': 3},
-  ];
-
-  final List<String> listInfo = ['enter'.tr(), 'exit'.tr()];
 
   @override
   void initState() {
@@ -57,19 +44,24 @@ class _SkudPageState extends State<SkudPage> {
   void _scrollListener() {
     if (scrollController.offset >=
         (scrollController.position.maxScrollExtent - 50)) {
-      context.read<SkudBloc>().add(const SkudListDataFetch());
+      context.read<SkudBloc>().add(SkudListDataFetch(passType: passType));
     } else {}
   }
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> items = [
+      {'name': 'allActive'.tr(), 'value': 1},
+      {'name': 'allEnter'.tr(), 'value': 2},
+      {'name': 'allExit'.tr(), 'value': 3},
+    ];
     return Scaffold(
       body: BlocConsumer<SkudBloc, SkudState>(
         listener: (context, state) {},
         listenWhen: (previous, current) {
-          if (current.isPaginationLoading)
+          if (current.isPaginationLoading) {
             scrollController.removeListener(_scrollListener);
-          else {
+          } else {
             WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
               scrollController.addListener(_scrollListener);
             });
@@ -143,89 +135,89 @@ class _SkudPageState extends State<SkudPage> {
               SizedBox(
                 height: 14.h,
               ),
-              if (false)
-                // Container(
-                //   padding: EdgeInsets.only(
-                //     left: 38.w,
-                //     right: 36.w,
-                //     top: 22.h,
-                //     bottom: 22.h,
-                //   ),
-                //   color: Colors.white,
-                //   child: Column(
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-                //       Text(
-                //         widget.positionName,
-                //         style: AppTheme.mainAppBarTextStyle,
-                //       ),
-                //       Text(
-                //         'Данные зарегистрированных пользователей',
-                //         style: AppTheme.mainSmallTextStyle,
-                //       ),
-                //       Row(
-                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //         children: [
-                //           Column(
-                //             crossAxisAlignment: CrossAxisAlignment.start,
-                //             children: [
-                //               Text(
-                //                 'Всего',
-                //                 style: AppTheme.infoRegularTextStyle
-                //                     .copyWith(fontWeight: FontWeight.bold),
-                //               ),
-                //               Text(
-                //                 'Мужчины',
-                //                 style: AppTheme.infoRegularTextStyle,
-                //               ),
-                //               Text(
-                //                 'Женщины',
-                //                 style: AppTheme.infoRegularTextStyle,
-                //               ),
-                //             ],
-                //           ),
-                //           Column(
-                //             crossAxisAlignment: CrossAxisAlignment.start,
-                //             children: [
-                //               Text(
-                //                 widget.allCount,
-                //                 style: AppTheme.infoRegularTextStyle
-                //                     .copyWith(fontWeight: FontWeight.bold),
-                //               ),
-                //               Text(
-                //                 state.gender?.maleCount.toString() ?? '',
-                //                 style: AppTheme.infoRegularTextStyle,
-                //               ),
-                //               Text(
-                //                 state.gender?.femaleCount.toString() ?? '',
-                //                 style: AppTheme.infoRegularTextStyle,
-                //               )
-                //             ],
-                //           ),
-                //           Container(
-                //             padding: EdgeInsets.all(9.w),
-                //             width: 86.w,
-                //             height: 86.h,
-                //             child: CircularProgressIndicator(
-                //               value: (state.gender?.femaleCount != null &&
-                //                       double.parse(widget.allCount) != 0)
-                //                   ? state.gender!.femaleCount /
-                //                       double.parse(widget.allCount)
-                //                   : 0,
-                //               color: const Color(0xFF008FCC),
-                //               backgroundColor: const Color(0xFFFFB800),
-                //               strokeWidth: 18,
-                //             ),
-                //           )
-                //         ],
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // if (state.isGenderInitial) const Loader(),
-                SizedBox(
-                  height: 14.h,
-                ),
+              // if (false)
+              // Container(
+              //   padding: EdgeInsets.only(
+              //     left: 38.w,
+              //     right: 36.w,
+              //     top: 22.h,
+              //     bottom: 22.h,
+              //   ),
+              //   color: Colors.white,
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       Text(
+              //         widget.positionName,
+              //         style: AppTheme.mainAppBarTextStyle,
+              //       ),
+              //       Text(
+              //         'Данные зарегистрированных пользователей',
+              //         style: AppTheme.mainSmallTextStyle,
+              //       ),
+              //       Row(
+              //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //         children: [
+              //           Column(
+              //             crossAxisAlignment: CrossAxisAlignment.start,
+              //             children: [
+              //               Text(
+              //                 'Всего',
+              //                 style: AppTheme.infoRegularTextStyle
+              //                     .copyWith(fontWeight: FontWeight.bold),
+              //               ),
+              //               Text(
+              //                 'Мужчины',
+              //                 style: AppTheme.infoRegularTextStyle,
+              //               ),
+              //               Text(
+              //                 'Женщины',
+              //                 style: AppTheme.infoRegularTextStyle,
+              //               ),
+              //             ],
+              //           ),
+              //           Column(
+              //             crossAxisAlignment: CrossAxisAlignment.start,
+              //             children: [
+              //               Text(
+              //                 widget.allCount,
+              //                 style: AppTheme.infoRegularTextStyle
+              //                     .copyWith(fontWeight: FontWeight.bold),
+              //               ),
+              //               Text(
+              //                 state.gender?.maleCount.toString() ?? '',
+              //                 style: AppTheme.infoRegularTextStyle,
+              //               ),
+              //               Text(
+              //                 state.gender?.femaleCount.toString() ?? '',
+              //                 style: AppTheme.infoRegularTextStyle,
+              //               )
+              //             ],
+              //           ),
+              //           Container(
+              //             padding: EdgeInsets.all(9.w),
+              //             width: 86.w,
+              //             height: 86.h,
+              //             child: CircularProgressIndicator(
+              //               value: (state.gender?.femaleCount != null &&
+              //                       double.parse(widget.allCount) != 0)
+              //                   ? state.gender!.femaleCount /
+              //                       double.parse(widget.allCount)
+              //                   : 0,
+              //               color: const Color(0xFF008FCC),
+              //               backgroundColor: const Color(0xFFFFB800),
+              //               strokeWidth: 18,
+              //             ),
+              //           )
+              //         ],
+              //       ),
+              //     ],
+              //   ),
+              // ),
+              // if (state.isGenderInitial) const Loader(),
+              // SizedBox(
+              //   height: 14.h,
+              // ),
               Expanded(
                 child: Container(
                   padding: EdgeInsets.only(
@@ -244,7 +236,7 @@ class _SkudPageState extends State<SkudPage> {
                               Text(
                                 (widget.title == 'skud'.tr())
                                     ? 'historySkud'.tr()
-                                    : 'Профильные данные',
+                                    : 'profileData'.tr(),
                                 style: AppTheme.mainAppBarTextStyle,
                               ),
                               Text(
@@ -253,7 +245,11 @@ class _SkudPageState extends State<SkudPage> {
                               ),
                             ],
                           ),
-                          Image.asset('images/pdf_icon.png')
+                          GestureDetector(
+                              onTap: () {
+                                // pickAndOpenFile();
+                              },
+                              child: Image.asset('images/pdf_icon.png'))
                         ],
                       ),
                       SizedBox(
@@ -271,9 +267,40 @@ class _SkudPageState extends State<SkudPage> {
                               items: items,
                               selectedValue: selectedValue,
                               onChanged: (value) {
+                                final pitaniaBloc = context.read<SkudBloc>();
                                 setState(() {
                                   selectedValue = value!;
                                 });
+                                if (selectedValue == 2) {
+                                  passType = 1;
+                                  pitaniaBloc.add(SkudListDataFetch(
+                                      page: 1, passType: passType));
+                                  scrollController.animateTo(
+                                    0.0,
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeOut,
+                                  );
+                                }
+                                if (selectedValue == 1) {
+                                  passType = null;
+                                  pitaniaBloc.add(SkudListDataFetch(
+                                      page: 1, passType: passType));
+                                  scrollController.animateTo(
+                                    0.0,
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeOut,
+                                  );
+                                }
+                                if (selectedValue == 3) {
+                                  passType = 2;
+                                  pitaniaBloc.add(SkudListDataFetch(
+                                      page: 1, passType: passType));
+                                  scrollController.animateTo(
+                                    0.0,
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeOut,
+                                  );
+                                }
                               },
                               hintTitle: items[0]['name'],
                             ),
@@ -286,7 +313,11 @@ class _SkudPageState extends State<SkudPage> {
                                   listNames: state.skudResponse,
                                   controller: scrollController),
                             )
-                          : const SizedBox()
+                          : (state.isFailure)
+                              ? Center(
+                                  child: Text(state.error ?? ''),
+                                )
+                              : const SizedBox()
                     ],
                   ),
                 ),
@@ -297,4 +328,15 @@ class _SkudPageState extends State<SkudPage> {
       ),
     );
   }
+
+  // Future<void> pickAndOpenFile() async {
+  //   FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+  //   if (result != null && result.files.single.path != null) {
+  //     String? filePath = result.files.single.path;
+  //     OpenFile.open(filePath);
+  //   } else {
+  //     // Пользователь отменил выбор файла
+  //   }
+  // }
 }

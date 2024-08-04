@@ -11,3 +11,4 @@ String skud = '/analytics/list';
 String pitania = '/food';
 String phone = '/phone';
 String license = '/license';
+String device = '/device';

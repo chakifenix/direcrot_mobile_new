@@ -10,9 +10,10 @@ class PitaniaRepositoryImpl implements PitaniaRepository {
   final PitaniaDataSource pitaniaDataSource;
   PitaniaRepositoryImpl(this.pitaniaDataSource);
   @override
-  Future<Either<Failure, List<PitaniaEntity>>> getPitaniaList(int page) async {
-    return _getPitaniaList(
-        () async => await pitaniaDataSource.getAllPitaniaList(page));
+  Future<Either<Failure, List<PitaniaEntity>>> getPitaniaList(int page,
+      int? classFrom, int? classTo, String? dateFrom, String? dateTo) async {
+    return _getPitaniaList(() async => await pitaniaDataSource
+        .getAllPitaniaList(page, classFrom, classTo, dateFrom, dateTo));
   }
 
   Future<Either<Failure, List<PitaniaEntity>>> _getPitaniaList(

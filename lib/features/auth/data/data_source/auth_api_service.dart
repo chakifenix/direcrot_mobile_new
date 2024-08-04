@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:direcrot_mobile_new/core/internet_services/dio_client.dart';
 import 'package:direcrot_mobile_new/core/internet_services/error/dio_exception.dart';
+import 'package:direcrot_mobile_new/core/internet_services/error/exceptions.dart';
 import 'package:direcrot_mobile_new/core/internet_services/paths.dart';
 import 'package:direcrot_mobile_new/features/auth/data/models/iin_answer_model.dart';
 import 'package:direcrot_mobile_new/features/auth/data/models/user_model.dart';
@@ -8,6 +9,7 @@ import 'package:direcrot_mobile_new/features/auth/data/models/user_model.dart';
 abstract interface class AuthApiService {
   Future<IinAnswerModel> loginWithIIN({required String iin});
   Future<UserModel> loginWithSms({required String code, required String iin});
+  Future<String> updatePhoneNumber({required String phoneNumber});
 }
 
 class AuthApiServiceImpl implements AuthApiService {
@@ -19,7 +21,7 @@ class AuthApiServiceImpl implements AuthApiService {
       return IinAnswerModel.fromjson(response);
     } on DioException catch (e) {
       var error = DioExceptionService.fromDioError(e);
-      throw error.errorMessage;
+      throw ServerException(error.errorMessage);
     }
   }
 
@@ -32,7 +34,19 @@ class AuthApiServiceImpl implements AuthApiService {
       return UserModel.fromjson(response['data']);
     } on DioException catch (e) {
       var error = DioExceptionService.fromDioError(e);
-      throw error.errorMessage;
+      throw ServerException(error.errorMessage);
+    }
+  }
+
+  @override
+  Future<String> updatePhoneNumber({required String phoneNumber}) async {
+    try {
+      final response =
+          await DioClient.instance.put(phone, data: {'phone': phoneNumber});
+      return response['data'];
+    } on DioException catch (e) {
+      var error = DioExceptionService.fromDioError(e);
+      throw ServerException(error.errorMessage);
     }
   }
 }

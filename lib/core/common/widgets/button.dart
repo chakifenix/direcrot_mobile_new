@@ -16,7 +16,7 @@ class AppButton extends StatelessWidget {
         onPressed: pressAction,
         child: Text(
           title,
-          style: AppTheme.lightThemeMode.textTheme.bodyMedium!
+          style: AppTheme.bodyMedium
               .copyWith(color: Colors.white, fontSize: 20.sp),
         ));
   }
@@ -36,7 +36,7 @@ class AppInactiveButton extends StatelessWidget {
         onPressed: pressAction,
         child: Text(
           title,
-          style: AppTheme.lightThemeMode.textTheme.bodyMedium!
+          style: AppTheme.bodyMedium
               .copyWith(color: Colors.white, fontSize: 20.sp),
         ));
   }

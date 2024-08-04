@@ -41,7 +41,7 @@ class OnboardPages extends StatelessWidget {
                 height: 31.h,
               )),
           Positioned(
-            top: 380,
+            top: 380.h,
             child: ClipPath(
               clipper: WaveClipper(),
               child: Container(
@@ -58,7 +58,7 @@ class OnboardPages extends StatelessWidget {
                     SizedBox(
                       child: Text(
                         title,
-                        style: AppTheme.lightThemeMode.textTheme.displayLarge!
+                        style: AppTheme.displayLarge
                             .copyWith(color: Colors.white, letterSpacing: -2),
                       ),
                     ),
@@ -70,24 +70,19 @@ class OnboardPages extends StatelessWidget {
                             text: TextSpan(children: [
                               TextSpan(
                                 text: subTitle1,
-                                style: AppTheme
-                                    .lightThemeMode.textTheme.displayMedium!
-                                    .copyWith(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
+                                style: AppTheme.displayMedium.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
                               ),
                               TextSpan(
                                   text: subTitle2,
-                                  style: AppTheme
-                                      .lightThemeMode.textTheme.displayMedium!
+                                  style: AppTheme.displayMedium
                                       .copyWith(color: Colors.white))
                             ]),
                           )
                         : Text(
                             subTitle1,
-                            style: AppTheme
-                                .lightThemeMode.textTheme.displayMedium!
-                                .copyWith(
+                            style: AppTheme.displayMedium.copyWith(
                               color: Colors.white,
                             ),
                           ),
@@ -110,9 +105,7 @@ class OnboardPages extends StatelessWidget {
                                     color: Colors.transparent,
                                     child: Text(
                                       'start'.tr(),
-                                      style: AppTheme.lightThemeMode.textTheme
-                                          .displayMedium!
-                                          .copyWith(
+                                      style: AppTheme.displayMedium.copyWith(
                                         color: const Color(0xFFFFB800),
                                       ),
                                     ),

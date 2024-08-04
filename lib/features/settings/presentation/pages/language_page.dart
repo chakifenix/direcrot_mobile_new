@@ -39,7 +39,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
             elevation: 0,
             backgroundColor: const Color(0xFFF5F9FF),
             title: Text(
-              'language',
+              'language'.tr(),
               style: TextStyle(
                 color: const Color(0xFF1F2024),
                 fontSize: 18.sp,

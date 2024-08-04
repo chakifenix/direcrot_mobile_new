@@ -11,3 +11,5 @@ class LgotnikiDataFetch extends LgotnikiEvent {
   final int? page;
   const LgotnikiDataFetch({this.page});
 }
+
+class LgotnikiGenderFetch extends LgotnikiEvent {}

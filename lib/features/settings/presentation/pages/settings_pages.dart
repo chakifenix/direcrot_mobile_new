@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:direcrot_mobile_new/core/theme/theme.dart';
 import 'package:direcrot_mobile_new/core/common/widgets/loader.dart';
 import 'package:direcrot_mobile_new/core/common/widgets/menu.dart';
@@ -11,6 +12,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -180,10 +183,17 @@ class _SettingsPageState extends State<SettingsPage> {
                           Text('orgDetail'.tr()),
                           Row(
                             children: [
-                              Text(
-                                'download'.tr(),
-                                style: AppTheme.infoSmalTextStyle
-                                    .copyWith(color: const Color(0xFF046BC8)),
+                              GestureDetector(
+                                onTap: () {
+                                  downloadAndOpenFile(
+                                      'https://axiomabio.com/pdf/test.pdf',
+                                      'sample.pdf');
+                                },
+                                child: Text(
+                                  'download'.tr(),
+                                  style: AppTheme.infoSmalTextStyle
+                                      .copyWith(color: const Color(0xFF046BC8)),
+                                ),
                               ),
                               SizedBox(
                                 width: 17.w,
@@ -316,7 +326,12 @@ class _SettingsPageState extends State<SettingsPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => DevicesPage()));
+                                builder: (context) => DevicesPage(
+                                      licenseNo: state.license?.license ?? '',
+                                      expire: DateFormat('dd.MM.yyyy').format(
+                                          state.license?.dateExpire ??
+                                              DateTime.now()),
+                                    )));
                       },
                       child: Container(
                         padding: EdgeInsets.only(right: 80.w),
@@ -408,6 +423,28 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
     );
+  }
+
+  Future<void> downloadAndOpenFile(String url, String fileName) async {
+    try {
+      // Получаем временную директорию
+      Directory tempDir = await getTemporaryDirectory();
+      String tempPath = tempDir.path;
+
+      // Путь для сохранения файла
+      String filePath = '$tempPath/$fileName';
+
+      // Инициализируем Dio
+      Dio dio = Dio();
+
+      // Скачиваем файл и сохраняем его в filePath
+      await dio.download(url, filePath);
+
+      // Открываем файл
+      OpenFile.open(filePath);
+    } catch (e) {
+      print('Error downloading or opening file: $e');
+    }
   }
 }
 

@@ -6,13 +6,13 @@ import 'package:direcrot_mobile_new/features/contingent_student/presentation/pag
 import 'package:direcrot_mobile_new/features/lgotniki/presentation/pages/lgotniki_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ContingentPage extends StatefulWidget {
-  final String title;
-  const ContingentPage({super.key, required this.title});
+  const ContingentPage({
+    super.key,
+  });
 
   @override
   State<ContingentPage> createState() => _ContingentPageState();
@@ -61,7 +61,7 @@ class _ContingentPageState extends State<ContingentPage> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              widget.title,
+                              'contingent'.tr(),
                               style: AppTheme.mainMediumTextStyle
                                   .copyWith(fontWeight: FontWeight.bold),
                             ),
@@ -90,18 +90,18 @@ class _ContingentPageState extends State<ContingentPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.title,
+                                'contingent'.tr(),
                                 style: AppTheme.mainAppBarTextStyle
                                     .copyWith(color: Colors.white),
                               ),
                               SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width - 120,
+                                  // width:
+                                  //     MediaQuery.of(context).size.width - 120.w,
                                   child: Text(
-                                    'manage'.tr(),
-                                    style: AppTheme.mainAppBarSmallTextStyle
-                                        .copyWith(color: Colors.white),
-                                  ))
+                                'manage'.tr(),
+                                style: AppTheme.mainAppBarSmallTextStyle
+                                    .copyWith(color: Colors.white),
+                              ))
                             ],
                           ),
                         ],
@@ -122,7 +122,7 @@ class _ContingentPageState extends State<ContingentPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Статистика',
+                            'statistics'.tr(),
                             style: AppTheme.mainAppBarTextStyle,
                           ),
                           Text(

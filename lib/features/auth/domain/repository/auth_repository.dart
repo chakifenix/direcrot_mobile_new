@@ -7,4 +7,6 @@ abstract interface class AuthRepository {
   Future<Either<Failure, IinAnswer>> loginWithIin({required String iin});
   Future<Either<Failure, User>> loginWithSms(
       {required String code, required String iin});
+  Future<Either<Failure, String>> updatePhoneNumber(
+      {required String phoneNumber});
 }

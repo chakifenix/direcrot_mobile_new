@@ -1,6 +1,6 @@
 import 'package:direcrot_mobile_new/core/usecase/usecase.dart';
 import 'package:direcrot_mobile_new/core/common/entities/contingent_student.dart';
-import 'package:direcrot_mobile_new/features/contingent_student/domain/entities/contingent_student_gender.dart';
+import 'package:direcrot_mobile_new/core/common/entities/contingent_student_gender.dart';
 import 'package:direcrot_mobile_new/features/contingent_student/domain/usecases/get_contingent_student_data.dart';
 import 'package:direcrot_mobile_new/features/contingent_student/domain/usecases/get_contingent_student_gender_data.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

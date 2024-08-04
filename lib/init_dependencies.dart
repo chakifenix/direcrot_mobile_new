@@ -1,6 +1,7 @@
 import 'package:direcrot_mobile_new/features/auth/data/data_source/auth_api_service.dart';
 import 'package:direcrot_mobile_new/features/auth/data/repository/auth_repository_impl.dart';
 import 'package:direcrot_mobile_new/features/auth/domain/repository/auth_repository.dart';
+import 'package:direcrot_mobile_new/features/auth/domain/usecases/save_phone.dart';
 import 'package:direcrot_mobile_new/features/auth/domain/usecases/user_iin_login.dart';
 import 'package:direcrot_mobile_new/features/auth/domain/usecases/user_sms_login.dart';
 import 'package:direcrot_mobile_new/features/auth/presentation/bloc/auth_bloc.dart';
@@ -18,6 +19,11 @@ import 'package:direcrot_mobile_new/features/contingent_student/domain/repositor
 import 'package:direcrot_mobile_new/features/contingent_student/domain/usecases/get_contingent_student_data.dart';
 import 'package:direcrot_mobile_new/features/contingent_student/domain/usecases/get_contingent_student_gender_data.dart';
 import 'package:direcrot_mobile_new/features/contingent_student/presentation/bloc/contingent_student_bloc.dart';
+import 'package:direcrot_mobile_new/features/devices/data/data_source/device_data_source.dart';
+import 'package:direcrot_mobile_new/features/devices/data/repository/devices_repository_impl.dart';
+import 'package:direcrot_mobile_new/features/devices/domain/repository/devices_repository.dart';
+import 'package:direcrot_mobile_new/features/devices/domain/usecases/get_devices_list.dart';
+import 'package:direcrot_mobile_new/features/devices/presentation/bloc/device_bloc.dart';
 import 'package:direcrot_mobile_new/features/information/data/data_source/news_data_source.dart';
 import 'package:direcrot_mobile_new/features/information/data/repository/news_repository_impl.dart';
 import 'package:direcrot_mobile_new/features/information/domain/repository/news_repository.dart';
@@ -27,6 +33,7 @@ import 'package:direcrot_mobile_new/features/lgotniki/data/data_source/lgotniki_
 import 'package:direcrot_mobile_new/features/lgotniki/data/repository/lgotniki_repository_impl.dart';
 import 'package:direcrot_mobile_new/features/lgotniki/domain/repostory/lgotniki_repository.dart';
 import 'package:direcrot_mobile_new/features/lgotniki/domain/usecase/get_lgotniki_data.dart';
+import 'package:direcrot_mobile_new/features/lgotniki/domain/usecase/get_lgotniki_gender.dart';
 import 'package:direcrot_mobile_new/features/lgotniki/presentation/bloc/lgotniki_bloc.dart';
 import 'package:direcrot_mobile_new/features/main/data/datasources/main_data_source.dart';
 import 'package:direcrot_mobile_new/features/main/data/repositories/main_repository_impl.dart';
@@ -79,6 +86,7 @@ Future<void> initDependencies() async {
   initSkud();
   initPitania();
   initLgotniki();
+  initDeviceList();
 }
 
 void initAuth() {
@@ -91,9 +99,12 @@ void initAuth() {
     //UseCase
     ..registerFactory(() => UserIinLogin(serviceLocator()))
     ..registerFactory(() => UserSmsLogin(serviceLocator()))
+    ..registerFactory(() => SavePhoneNumber(serviceLocator()))
     //Bloc
     ..registerLazySingleton(() => AuthBloc(
-        userIinLogin: serviceLocator(), userSmsLogin: serviceLocator()));
+        userIinLogin: serviceLocator(),
+        userSmsLogin: serviceLocator(),
+        savePhone: serviceLocator()));
 }
 
 void initMainPage() {
@@ -229,8 +240,22 @@ void initLgotniki() {
         () => LgotnikiRepositoryImpl(serviceLocator()))
     //UseCase
     ..registerFactory(() => GetLgotnikiData(serviceLocator()))
+    ..registerFactory(() => GetLgotnikiGender(serviceLocator()))
     //Bloc
     ..registerLazySingleton(() => LgotnikiBloc(
-          getLgotnikiData: serviceLocator(),
-        ));
+        getLgotnikiData: serviceLocator(),
+        getLgotnikiGender: serviceLocator()));
+}
+
+void initDeviceList() {
+  //DataSource
+  serviceLocator
+    ..registerFactory<DeviceDataSource>(() => DeviceDataSourceImpl())
+    //Repository
+    ..registerFactory<DevicesRepository>(
+        () => DevicesRepositoryImpl(serviceLocator()))
+    //Usecase
+    ..registerFactory(() => GetDevicesList(serviceLocator()))
+    //Bloc
+    ..registerLazySingleton(() => DeviceBloc(getDevicesList: serviceLocator()));
 }

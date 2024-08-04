@@ -9,5 +9,6 @@ abstract class SkudEvent extends Equatable {
 
 class SkudListDataFetch extends SkudEvent {
   final int? page;
-  const SkudListDataFetch({this.page});
+  final int? passType;
+  const SkudListDataFetch({this.page, this.passType});
 }

@@ -67,7 +67,15 @@ class _LoginPageState extends State<LoginPage> {
             },
             builder: (context, state) {
               if (state.isLoading) {
-                return const Loader();
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Loader(),
+                    ],
+                  ),
+                );
               }
               return Column(
                 children: [

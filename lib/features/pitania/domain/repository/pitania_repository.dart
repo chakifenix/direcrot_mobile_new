@@ -4,7 +4,8 @@ import 'package:direcrot_mobile_new/features/pitania/domain/entities/pitania_met
 import 'package:fpdart/fpdart.dart';
 
 abstract interface class PitaniaRepository {
-  Future<Either<Failure, List<PitaniaEntity>>> getPitaniaList(int page);
+  Future<Either<Failure, List<PitaniaEntity>>> getPitaniaList(
+      int page, int? classFrom, int? classTo, String? dateFrom, String? dateTo);
   Future<Either<Failure, PitaniaMetaEntity>> getPitaniaCount(
       int? isFoodFree, int? classAt, int? classTo);
 }

@@ -17,10 +17,10 @@ class SkudModel extends SkudEntity {
         surname: json["surname"] ?? '',
         name: json["name"] ?? '',
         patronymic: json["patronymic"] ?? '',
-        uid: json["uid"] ?? '',
+        uid: json["uid"],
         position: json["position"] ?? '',
         passTypeId: json["pass_type_id"] ?? '',
         dateTime: DateTime.parse(json["date_time"]),
-        genderId: json["gender_id"] ?? '',
+        genderId: json["gender_id"],
       );
 }

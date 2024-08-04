@@ -1,8 +1,8 @@
-import 'package:direcrot_mobile_new/core/home_page/nav_screen.dart';
 import 'package:direcrot_mobile_new/core/theme/theme.dart';
 import 'package:direcrot_mobile_new/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:direcrot_mobile_new/features/contingent/presentation/bloc/contingent_bloc.dart';
 import 'package:direcrot_mobile_new/features/contingent_student/presentation/bloc/contingent_student_bloc.dart';
+import 'package:direcrot_mobile_new/features/devices/presentation/bloc/device_bloc.dart';
 import 'package:direcrot_mobile_new/features/lgotniki/presentation/bloc/lgotniki_bloc.dart';
 import 'package:direcrot_mobile_new/features/pitania/presentation/bloc/pitania_bloc.dart';
 import 'package:direcrot_mobile_new/features/profile_page/presentation/bloc/profile_bloc.dart';
@@ -34,7 +34,8 @@ void main() async {
       BlocProvider(create: (context) => serviceLocator<SettingsBloc>()),
       BlocProvider(create: (context) => serviceLocator<SkudBloc>()),
       BlocProvider(create: (context) => serviceLocator<PitaniaBloc>()),
-      BlocProvider(create: (context) => serviceLocator<LgotnikiBloc>())
+      BlocProvider(create: (context) => serviceLocator<LgotnikiBloc>()),
+      BlocProvider(create: (context) => serviceLocator<DeviceBloc>())
     ],
     child: EasyLocalization(
         supportedLocales: const [
@@ -62,24 +63,14 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return MaterialApp(
             title: 'Flutter Demo',
-            theme: AppTheme.lightThemeMode,
-            home: sharedService.passed
-                ? const NavScreen(
-                    passed: false,
-                  )
-                : const SplashScreen(),
+            theme: AppTheme.lightThemeMode.copyWith(
+              textTheme: TextTheme(
+                  bodyMedium: TextStyle(fontSize: 14.sp, color: Colors.black)),
+            ),
+            home: const SplashScreen(),
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            // PinScreen()
-            // CamerasPage()
-            // NavScreen()
-            //     ContingentDetailPage(
-            //   positionName: 'Учителя',
-            //   allCount: '71',
-            //   manCount: '11',
-            //   womanCount: '60',
-            // ),
           );
         });
   }

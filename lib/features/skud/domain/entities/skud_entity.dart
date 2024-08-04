@@ -1,13 +1,13 @@
 class SkudEntity {
   final int id;
-  final String surname;
-  final String name;
-  final String patronymic;
-  final int uid;
+  final String? surname;
+  final String? name;
+  final String? patronymic;
+  final int? uid;
   final String position;
   final int passTypeId;
   final DateTime dateTime;
-  final int genderId;
+  final int? genderId;
 
   SkudEntity({
     required this.id,

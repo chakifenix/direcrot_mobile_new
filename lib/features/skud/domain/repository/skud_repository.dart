@@ -3,5 +3,6 @@ import 'package:direcrot_mobile_new/features/skud/domain/entities/skud_entity.da
 import 'package:fpdart/fpdart.dart';
 
 abstract interface class SkudRepository {
-  Future<Either<Failure, List<SkudEntity>>> getSkudList(int page);
+  Future<Either<Failure, List<SkudEntity>>> getSkudList(
+      int page, int? passType);
 }

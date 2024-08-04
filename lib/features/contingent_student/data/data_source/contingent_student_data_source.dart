@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:direcrot_mobile_new/core/internet_services/dio_client.dart';
 import 'package:direcrot_mobile_new/core/internet_services/error/dio_exception.dart';
 import 'package:direcrot_mobile_new/core/internet_services/paths.dart';
-import 'package:direcrot_mobile_new/features/contingent_student/data/models/contingent_student_gender_model.dart';
+import 'package:direcrot_mobile_new/core/common/models/contingent_student_gender_model.dart';
 import 'package:direcrot_mobile_new/core/common/models/contingent_student_model.dart';
 
 abstract interface class ContingentStudentDataSource {
@@ -31,7 +31,7 @@ class ContingentStudentDataSourceImpl implements ContingentStudentDataSource {
   Future<ContingentStudentGenderModel> getContingentStudentGenderData() async {
     try {
       final response = await DioClient.instance
-          .get(contingentStudent, queryParameters: {'gender': 1});
+          .get(contingentStudent, queryParameters: {'genders': 1});
       return ContingentStudentGenderModel.fromjson(response['data']);
     } on DioException catch (e) {
       var error = DioExceptionService.fromDioError(e);

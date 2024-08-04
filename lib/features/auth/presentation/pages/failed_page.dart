@@ -133,10 +133,11 @@ class FailedPage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
+                    Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const LoginPage()));
+                            builder: (context) => const LoginPage()),
+                        (route) => false);
                   },
                   child: Text(
                     'authFailRe'.tr(),

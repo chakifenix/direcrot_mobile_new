@@ -264,7 +264,7 @@ class _ContingentDetailPageState extends State<ContingentDetailPage> {
                               Text(
                                 (widget.title == 'СКУД')
                                     ? 'История учета'
-                                    : 'Профильные данные',
+                                    : 'profileData'.tr(),
                                 style: AppTheme.mainAppBarTextStyle,
                               ),
                               Text(

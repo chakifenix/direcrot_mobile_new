@@ -1,6 +1,5 @@
 import 'package:direcrot_mobile_new/features/onboard/presentation/pages/onboard_first.dart';
 import 'package:direcrot_mobile_new/features/onboard/presentation/pages/onboard_pages.dart';
-import 'package:direcrot_mobile_new/features/onboard/presentation/pages/select_language_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -22,9 +21,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: PageView(
         controller: _controller,
         children: [
-          SelectLanguagePage(
-            controller: _controller,
-          ),
+          // SelectLanguagePage(
+          //   controller: _controller,
+          // ),
           OnboardFirst(
             image: 'images/001.png',
             title: 'pg1t'.tr(),

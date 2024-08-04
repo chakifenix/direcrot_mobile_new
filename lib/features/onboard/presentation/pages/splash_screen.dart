@@ -1,6 +1,7 @@
+import 'package:direcrot_mobile_new/core/home_page/nav_screen.dart';
 import 'package:direcrot_mobile_new/core/theme/theme.dart';
 import 'package:direcrot_mobile_new/features/auth/presentation/pages/login_page.dart';
-import 'package:direcrot_mobile_new/features/onboard/presentation/pages/onboarding_screen.dart';
+import 'package:direcrot_mobile_new/features/onboard/presentation/pages/select_language_page.dart';
 import 'package:direcrot_mobile_new/features/onboard/presentation/widgets/progress_indicator.dart';
 import 'package:direcrot_mobile_new/init_dependencies.dart';
 import 'package:direcrot_mobile_new/services/shared_preferences_service.dart';
@@ -32,8 +33,11 @@ class _SplashScreenState extends State<SplashScreen>
           Navigator.pushAndRemoveUntil(
               context,
               (!sharedService.onBoardPassed)
-                  ? OnboardingScreen.route()
-                  : LoginPage.route(),
+                  ? SelectLanguagePage.route()
+                  : (sharedService.passed)
+                      ? MaterialPageRoute(
+                          builder: (context) => const NavScreen(passed: false))
+                      : LoginPage.route(),
               (route) => false);
         }
       });
@@ -60,15 +64,14 @@ class _SplashScreenState extends State<SplashScreen>
                 Column(
                   children: [
                     SizedBox(
-                      width: 277.w,
+                      width: 290.w,
                       child: Text(
                         'Умное управление',
-                        style: AppTheme.lightThemeMode.textTheme.bodyMedium!
-                            .copyWith(
-                                fontSize: 48.sp,
-                                fontWeight: FontWeight.w300,
-                                height: 0.8,
-                                letterSpacing: -0.1),
+                        style: AppTheme.bodyMedium.copyWith(
+                            fontSize: 48.sp,
+                            fontWeight: FontWeight.w300,
+                            height: 0.8,
+                            letterSpacing: -0.1),
                       ),
                     ),
                     SizedBox(
@@ -81,19 +84,18 @@ class _SplashScreenState extends State<SplashScreen>
                   children: [
                     Text(
                       'ПРИЛОЖЕНИЕ',
-                      style: AppTheme.lightThemeMode.textTheme.bodyMedium!
-                          .copyWith(fontSize: 20),
+                      style: AppTheme.bodyMedium.copyWith(fontSize: 20),
                     ),
                     Text(
                       'ДИРЕКТОРА',
-                      style: AppTheme.lightThemeMode.textTheme.bodyMedium!
+                      style: AppTheme.bodyMedium
                           .copyWith(fontSize: 28, fontWeight: FontWeight.w700),
                     ),
                   ],
                 ),
                 Text(
                   'EDUS SMART',
-                  style: AppTheme.lightThemeMode.textTheme.bodyMedium!
+                  style: AppTheme.bodyMedium
                       .copyWith(fontSize: 16, fontWeight: FontWeight.w300),
                 )
               ],

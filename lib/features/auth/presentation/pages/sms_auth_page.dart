@@ -1,7 +1,9 @@
+import 'package:direcrot_mobile_new/core/common/widgets/loader.dart';
 import 'package:direcrot_mobile_new/core/theme/theme.dart';
 import 'package:direcrot_mobile_new/core/util/show_snackbar.dart';
 import 'package:direcrot_mobile_new/core/common/widgets/button.dart';
 import 'package:direcrot_mobile_new/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:direcrot_mobile_new/features/auth/presentation/pages/save_phone.dart';
 import 'package:direcrot_mobile_new/features/auth/presentation/pages/set_pin_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -27,11 +29,29 @@ class SmsAuthPage extends StatelessWidget {
               if (state.isFailure) {
                 showSnackBar(context, state.message ?? 'fail');
               } else if (state.isSuccess) {
+                if (state.user?.phoneNumber == '' ||
+                    state.user?.phoneNumber == null) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SavePhone()));
+                }
                 Navigator.pushAndRemoveUntil(context,
                     SetPinPage.route(user: state.user), (route) => false);
               }
             },
             builder: (context, state) {
+              if (state.isLoading) {
+                return SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Loader(),
+                    ],
+                  ),
+                );
+              }
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -68,7 +88,7 @@ class SmsAuthPage extends StatelessWidget {
                     height: 55.h,
                   ),
                   Text(
-                    'Код из 6 цифр',
+                    'code'.tr(),
                     style: AppTheme.authMediumTextStyle,
                   ),
                   SizedBox(

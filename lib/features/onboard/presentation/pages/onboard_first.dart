@@ -34,7 +34,7 @@ class OnboardFirst extends StatelessWidget {
                 height: 80.h,
               )),
           Positioned(
-            top: 380,
+            top: 380.h,
             child: ClipPath(
               clipper: WaveClipper(),
               child: Container(
@@ -49,10 +49,9 @@ class OnboardFirst extends StatelessWidget {
                       height: 190.h,
                     ),
                     SizedBox(
-                      width: 193.w,
                       child: Text(
                         title,
-                        style: AppTheme.lightThemeMode.textTheme.displayLarge!
+                        style: AppTheme.displayLarge
                             .copyWith(color: Colors.white, letterSpacing: -2),
                       ),
                     ),
@@ -62,13 +61,16 @@ class OnboardFirst extends StatelessWidget {
                     RichText(
                       text: TextSpan(children: [
                         TextSpan(
-                          text: subTitle1,
-                          style: AppTheme
-                              .lightThemeMode.textTheme.displayMedium!
-                              .copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                        ),
+                            text: subTitle1,
+                            style: AppTheme.displayMedium.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold)
+                            // AppTheme
+                            //     .lightThemeMode.textTheme.displayMedium!
+                            //     .copyWith(
+                            //         color: Colors.white,
+                            //         fontWeight: FontWeight.bold),
+                            ),
                         // TextSpan(
                         //     text: subTitle2,
                         //     style: AppTheme
@@ -82,12 +84,14 @@ class OnboardFirst extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(left: 190.w),
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white),
+                          border: Border.all(color: Colors.white, width: 2.w),
                           borderRadius: BorderRadius.circular(12.r)),
                       child: CupertinoButton(
-                          padding: EdgeInsets.symmetric(horizontal: 20.h),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20.h, vertical: 6.h),
                           color: Colors.transparent,
-                          child: Text('next'.tr()),
+                          child: FittedBox(
+                              fit: BoxFit.scaleDown, child: Text('next'.tr())),
                           onPressed: () {
                             controller.nextPage(
                                 duration: const Duration(milliseconds: 500),

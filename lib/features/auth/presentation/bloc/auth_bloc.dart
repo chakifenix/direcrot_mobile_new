@@ -1,4 +1,5 @@
 import 'package:direcrot_mobile_new/features/auth/domain/entities/user.dart';
+import 'package:direcrot_mobile_new/features/auth/domain/usecases/save_phone.dart';
 import 'package:direcrot_mobile_new/features/auth/domain/usecases/user_iin_login.dart';
 import 'package:direcrot_mobile_new/features/auth/domain/usecases/user_sms_login.dart';
 import 'package:direcrot_mobile_new/services/local_storage.dart';
@@ -12,16 +13,34 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserIinLogin _userIinLogin;
   final UserSmsLogin _userSmsLogin;
+  final SavePhoneNumber _savePhone;
   AuthBloc(
-      {required UserIinLogin userIinLogin, required UserSmsLogin userSmsLogin})
+      {required UserIinLogin userIinLogin,
+      required UserSmsLogin userSmsLogin,
+      required SavePhoneNumber savePhone})
       : _userIinLogin = userIinLogin,
         _userSmsLogin = userSmsLogin,
+        _savePhone = savePhone,
         super(const AuthState()) {
     on<AuthEvent>(
         (_, emit) => emit(state.copyWith(status: AuthStatus.loading)));
     on<AuthIinLogin>(_getIinMessage);
     on<AuthSmsLogin>(_getSmsAnswer);
     on<LoadUserInfo>(_getUserInfo);
+    on<SavePhoneNumberFetch>(_phoneNumberFetch);
+  }
+
+  void _phoneNumberFetch(
+      SavePhoneNumberFetch event, Emitter<AuthState> emit) async {
+    emit(state.copyWith(status: AuthStatus.initial));
+    final res = await _savePhone(
+        PhoneNumberParams(phoneNumber: event.phoneNumber), null);
+    res.fold(
+        (failure) => emit(state.copyWith(
+            status: AuthStatus.failure, message: failure.message)), (message) {
+      SessionController().savePhoneNumber(event.phoneNumber);
+      emit(state.copyWith(status: AuthStatus.success, message: message));
+    });
   }
 
   void _getIinMessage(AuthIinLogin event, Emitter<AuthState> emit) async {

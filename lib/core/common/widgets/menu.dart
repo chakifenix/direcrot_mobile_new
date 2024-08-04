@@ -16,12 +16,16 @@ class Menu extends StatelessWidget {
   final int id;
   final String image;
   final Color? color;
+  final String? license;
+  final String? expire;
   const Menu(
       {super.key,
       required this.title,
       required this.image,
       this.color,
-      required this.id});
+      required this.id,
+      this.license,
+      this.expire});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +37,10 @@ class Menu extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => (id == 13)
-                        ? DevicesPage()
+                        ? DevicesPage(
+                            licenseNo: license ?? '',
+                            expire: expire ?? '',
+                          )
                         : (id == 12)
                             ? TechSupport()
                             : (id == 2)
@@ -44,18 +51,17 @@ class Menu extends StatelessWidget {
                                     womanCount: '12',
                                     title: title)
                                 : (id == 5)
-                                    ? const CamerasPage()
+                                    ? CamerasPage()
                                     : (id == 14)
                                         ? ProfilePage()
                                         : (id == 16)
-                                            ? const LanguageScreen()
+                                            ? LanguageScreen()
                                             : (id == 17)
-                                                ? const PincodePage()
+                                                ? PincodePage()
                                                 : (id == 1)
-                                                    ? ContingentPage(
-                                                        title: title)
+                                                    ? ContingentPage()
                                                     : (id == 3)
-                                                        ? const PitaniaPage()
+                                                        ? PitaniaPage()
                                                         : Container(
                                                             width: 100,
                                                             height: 400,

@@ -1,5 +1,6 @@
 import 'package:direcrot_mobile_new/core/common/entities/contingent_student.dart';
-import 'package:direcrot_mobile_new/core/internet_services/error/dio_exception.dart';
+import 'package:direcrot_mobile_new/core/common/entities/contingent_student_gender.dart';
+import 'package:direcrot_mobile_new/core/internet_services/error/exceptions.dart';
 import 'package:direcrot_mobile_new/core/internet_services/error/failure.dart';
 import 'package:direcrot_mobile_new/features/lgotniki/data/data_source/lgotniki_data_source.dart';
 import 'package:direcrot_mobile_new/features/lgotniki/domain/repostory/lgotniki_repository.dart';
@@ -20,8 +21,24 @@ class LgotnikiRepositoryImpl implements LgotnikiRepository {
     try {
       final stats = await fn();
       return right(stats);
-    } on DioExceptionService catch (e) {
-      return left(Failure(e.errorMessage));
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ContingentStudentGender>> getLgotnikiGender() {
+    return _getLgotnikiGender(
+        () async => await lgotnikiDataSource.getGenderCount());
+  }
+
+  Future<Either<Failure, ContingentStudentGender>> _getLgotnikiGender(
+      Future<ContingentStudentGender> Function() fn) async {
+    try {
+      final stats = await fn();
+      return right(stats);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
     }
   }
 }

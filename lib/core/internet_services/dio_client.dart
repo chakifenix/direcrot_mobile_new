@@ -66,6 +66,9 @@ class DioClient {
       if (response.statusCode == 200 || response.statusCode == 201) {
         return response.data;
       }
+      if (response.statusCode == 401) {
+        response.data;
+      }
       throw "something went wrong";
     } catch (e) {
       rethrow;

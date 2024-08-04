@@ -30,6 +30,12 @@
 	<string>Used to capture audio for image picker plugin</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Used to demonstrate image picker plugin</string>
+	<key>NSDocumentsUsageDescription</key>
+	<string>We need access to your documents to open files.</string>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

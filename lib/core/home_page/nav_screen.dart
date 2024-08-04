@@ -5,7 +5,6 @@ import 'package:direcrot_mobile_new/features/contingent/presentation/pages/conti
 import 'package:direcrot_mobile_new/features/information/presentation/pages/information_page.dart';
 import 'package:direcrot_mobile_new/features/main/presentation/pages/main_page.dart';
 import 'package:direcrot_mobile_new/features/settings/presentation/pages/settings_pages.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class NavScreen extends StatefulWidget {
@@ -43,14 +42,10 @@ class _NavScreenState extends State<NavScreen> {
                 });
           });
     items = [
-      NavModel(page: const MainPage(), navKey: mainNavKey),
-      NavModel(page: const InformationPage(), navKey: infoNavKey),
-      NavModel(
-          page: ContingentPage(
-            title: 'contingent'.tr(),
-          ),
-          navKey: contingentNavKey),
-      NavModel(page: const SettingsPage(), navKey: settingsNavKey)
+      NavModel(page: MainPage(), navKey: mainNavKey),
+      NavModel(page: InformationPage(), navKey: infoNavKey),
+      NavModel(page: ContingentPage(), navKey: contingentNavKey),
+      NavModel(page: SettingsPage(), navKey: settingsNavKey)
     ];
   }
 

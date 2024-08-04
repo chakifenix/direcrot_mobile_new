@@ -21,3 +21,8 @@ final class AuthSmsLogin extends AuthEvent {
 }
 
 final class LoadUserInfo extends AuthEvent {}
+
+class SavePhoneNumberFetch extends AuthEvent {
+  final String phoneNumber;
+  const SavePhoneNumberFetch(this.phoneNumber);
+}

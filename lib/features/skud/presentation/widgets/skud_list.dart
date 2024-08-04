@@ -26,49 +26,75 @@ class SkudList extends StatelessWidget {
       padding: EdgeInsets.only(top: 19.h),
       itemCount: listNames.length,
       itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ProfilePage(
-                          id: listNames[index].uid,
-                        )));
-          },
-          child: Container(
-            padding: EdgeInsets.symmetric(vertical: 8.h),
-            decoration: const BoxDecoration(border: Border(top: BorderSide())),
-            child: Row(
-              children: [
-                SizedBox(
-                    width: 61.w,
-                    child: FittedBox(
-                        fit: BoxFit.scaleDown,
+        DateTime currentDate = listNames[index].dateTime;
+        DateTime? previousDate =
+            index > 0 ? listNames[index - 1].dateTime : null;
+
+        // Форматируем даты
+        String currentFormattedDate = DateFormat('dd.MM').format(currentDate);
+        String? previousFormattedDate = previousDate != null
+            ? DateFormat('dd.MM').format(previousDate)
+            : null;
+
+        // Проверяем, отличается ли текущая дата от предыдущей
+        bool showDate = previousFormattedDate == null ||
+            currentFormattedDate != previousFormattedDate;
+        return Column(
+          children: [
+            if (showDate) ...[
+              Text(currentFormattedDate),
+              SizedBox(height: 8.h), // Добавим отступ между датой и элементом
+            ],
+            GestureDetector(
+              onTap: () {
+                if (listNames[index].uid != null) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProfilePage(
+                                id: listNames[index].uid!,
+                              )));
+                }
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(vertical: 8.h),
+                decoration:
+                    const BoxDecoration(border: Border(top: BorderSide())),
+                child: Row(
+                  children: [
+                    SizedBox(
+                        width: 61.w,
+                        child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(
+                              DateFormat('HH:mm:ss')
+                                  .format(listNames[index].dateTime),
+                              style: AppTheme.contingentDeatilRegularTextStyle,
+                            ))),
+                    SizedBox(
+                      width: 15.w,
+                    ),
+                    SizedBox(
+                        width: 172.w,
                         child: Text(
-                          DateFormat('HH:mm:ss')
-                              .format(listNames[index].dateTime),
-                          style: AppTheme.contingentDeatilRegularTextStyle,
-                        ))),
-                SizedBox(
-                  width: 15.w,
+                          '${listNames[index].name} ${listNames[index].surname}',
+                          style: AppTheme.contingentDeatilRegularTextStyle
+                              .copyWith(fontWeight: FontWeight.bold),
+                        )),
+                    SizedBox(
+                      width: 46.w,
+                    ),
+                    Text(
+                      (listNames[index].passTypeId == 1)
+                          ? 'enter'.tr()
+                          : 'exit'.tr(),
+                      style: AppTheme.contingentDeatilRegularTextStyle,
+                    )
+                  ],
                 ),
-                SizedBox(
-                    width: 172.w,
-                    child: Text(
-                      '${listNames[index].name} ${listNames[index].surname}',
-                      style: AppTheme.contingentDeatilRegularTextStyle
-                          .copyWith(fontWeight: FontWeight.bold),
-                    )),
-                SizedBox(
-                  width: 46.w,
-                ),
-                Text(
-                  (listNames[index].passTypeId == 1) ? 'Вход' : 'Выход',
-                  style: AppTheme.contingentDeatilRegularTextStyle,
-                )
-              ],
+              ),
             ),
-          ),
+          ],
         );
       },
     );

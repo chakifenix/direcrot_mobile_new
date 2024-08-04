@@ -11,11 +11,21 @@ class GetAllPitaniaList
   @override
   Future<Either<Failure, List<PitaniaEntity>>> call(
       PitaniaListParams params, String? path) async {
-    return await pitaniaRepository.getPitaniaList(params.page);
+    return await pitaniaRepository.getPitaniaList(params.page, params.classFrom,
+        params.classTo, params.datefrom, params.dateTo);
   }
 }
 
 class PitaniaListParams {
   final int page;
-  PitaniaListParams({required this.page});
+  final int? classFrom;
+  final int? classTo;
+  final String? datefrom;
+  final String? dateTo;
+  PitaniaListParams(
+      {required this.page,
+      this.classFrom,
+      this.classTo,
+      this.datefrom,
+      this.dateTo});
 }

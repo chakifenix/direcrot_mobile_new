@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:direcrot_mobile_new/core/theme/theme.dart';
 import 'package:direcrot_mobile_new/features/profile_page/presentation/pages/profile_page.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -60,7 +61,7 @@ class ContingentList extends StatelessWidget {
                   width: 46.w,
                 ),
                 Text(
-                  '${listNames[index].classNumber} класс',
+                  '${listNames[index].classNumber} ${'class'.tr()}',
                   style: AppTheme.contingentDeatilRegularTextStyle,
                 )
               ],

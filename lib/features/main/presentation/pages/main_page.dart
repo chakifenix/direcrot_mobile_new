@@ -240,8 +240,16 @@ class _MainPageState extends State<MainPage> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                DevicesPage()));
+                                            builder: (context) => DevicesPage(
+                                                  licenseNo:
+                                                      state.license?.license ??
+                                                          '',
+                                                  expire: DateFormat(
+                                                          'dd.MM.yyyy')
+                                                      .format(state.license
+                                                              ?.dateExpire ??
+                                                          DateTime.now()),
+                                                )));
                                   },
                                   child: Container(
                                     padding: EdgeInsets.only(right: 25.w),
@@ -397,10 +405,10 @@ class _MainPageState extends State<MainPage> {
                                     color: Color(0xFF777777),
                                     id: 10,
                                   ),
-                                  const Menu(
-                                    title: 'Статистика',
+                                  Menu(
+                                    title: 'statistics'.tr(),
                                     image: 'images/11.png',
-                                    color: Color(0xFF777777),
+                                    color: const Color(0xFF777777),
                                     id: 11,
                                   ),
                                   Menu(
@@ -412,6 +420,10 @@ class _MainPageState extends State<MainPage> {
                                     title: 'device'.tr(),
                                     image: 'images/13.png',
                                     id: 13,
+                                    license: state.license?.license,
+                                    expire: DateFormat('dd.MM.yyyy').format(
+                                        state.license?.dateExpire ??
+                                            DateTime.now()),
                                   ),
                                 ],
                               ),

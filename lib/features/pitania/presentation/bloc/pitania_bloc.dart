@@ -45,7 +45,14 @@ class PitaniaBloc extends Bloc<PitaniaEvent, PitaniaState> {
     emit(state.copyWith(isPaginationLoading: true));
     final page = event.page ?? state.page;
     print("----Pagination page: ${page} ");
-    final res = await _getAllPitaniaList(PitaniaListParams(page: page), null);
+    final res = await _getAllPitaniaList(
+        PitaniaListParams(
+            page: page,
+            classFrom: event.classFrom,
+            classTo: event.classTo,
+            datefrom: event.dateFrom,
+            dateTo: event.dateTo),
+        null);
     res.fold(
         (failure) => emit(state.copyWith(
             isPaginationLoading: false,

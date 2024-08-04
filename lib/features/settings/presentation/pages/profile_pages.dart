@@ -130,7 +130,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   _pickImageFromGallery();
                                 },
                                 child: Text(
-                                  'Изменить фото',
+                                  'changePhoto'.tr(),
                                   style: AppTheme.mainSmallTextStyle
                                       .copyWith(color: const Color(0xFF046BC8)),
                                 ),

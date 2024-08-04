@@ -9,13 +9,12 @@ class AppTheme {
       );
   static final lightThemeMode = ThemeData.light().copyWith(
     scaffoldBackgroundColor: const Color(0xFFE6E6E6),
-    textTheme: TextTheme(
-        bodyMedium: TextStyle(
-          fontSize: 14.sp,
-          color: Colors.black,
-        ),
-        displayLarge: TextStyle(fontSize: 40.sp, height: 0.9),
-        displayMedium: TextStyle(fontSize: 20.sp)),
+  );
+  static final displayMedium = TextStyle(fontSize: 20.sp);
+  static final displayLarge = TextStyle(fontSize: 40.sp, height: 0.9);
+  static final bodyMedium = TextStyle(
+    fontSize: 14.sp,
+    color: Colors.black,
   );
   //Auth TextStyle
   static final authLargeTextStyle = TextStyle(

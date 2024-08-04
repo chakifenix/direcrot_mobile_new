@@ -71,7 +71,7 @@ class PitaniaList extends StatelessWidget {
                         Text(
                           ('${context.locale}' == 'kk')
                               ? '${listNames[index].position} сынып ${'studentClass'.tr()}'
-                              : ('${context.locale}' == 'kk')
+                              : ('${context.locale}' == 'ru')
                                   ? '${'studentClass'.tr()} ${listNames[index].position} класса'
                                   : '${listNames[index].position} class',
                           style: const TextStyle(

@@ -39,7 +39,7 @@ class _LgotnikiPageState extends State<LgotnikiPage> {
     super.initState();
 
     context.read<LgotnikiBloc>().add(const LgotnikiDataFetch(page: 1));
-    // context.read<LgotnikiBloc>().add(ContingentStudentGenderFetch());
+    context.read<LgotnikiBloc>().add(LgotnikiGenderFetch());
     scrollController.addListener(_scrollListener);
   }
 
@@ -66,6 +66,12 @@ class _LgotnikiPageState extends State<LgotnikiPage> {
           return true;
         },
         builder: (context, state) {
+          int allCount = 0;
+          if (state.genderCount != null) {
+            allCount =
+                state.genderCount!.femaleCount + state.genderCount!.maleCount;
+          }
+
           return Column(
             children: [
               Container(
@@ -120,7 +126,7 @@ class _LgotnikiPageState extends State<LgotnikiPage> {
                         SizedBox(
                             width: MediaQuery.of(context).size.width - 120,
                             child: Text(
-                              'Регистрации и управление пользователей',
+                              'manage'.tr(),
                               style: AppTheme.mainAppBarSmallTextStyle
                                   .copyWith(color: Colors.white),
                             ))
@@ -132,85 +138,84 @@ class _LgotnikiPageState extends State<LgotnikiPage> {
               SizedBox(
                 height: 14.h,
               ),
-              // if (state.isGenderSuccess)
-              //   Container(
-              //     padding: EdgeInsets.only(
-              //       left: 38.w,
-              //       right: 36.w,
-              //       top: 22.h,
-              //       bottom: 22.h,
-              //     ),
-              //     color: Colors.white,
-              //     child: Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       children: [
-              //         Text(
-              //           widget.positionName,
-              //           style: AppTheme.mainAppBarTextStyle,
-              //         ),
-              //         Text(
-              //           'Данные зарегистрированных пользователей',
-              //           style: AppTheme.mainSmallTextStyle,
-              //         ),
-              //         Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           children: [
-              //             Column(
-              //               crossAxisAlignment: CrossAxisAlignment.start,
-              //               children: [
-              //                 Text(
-              //                   'Всего',
-              //                   style: AppTheme.infoRegularTextStyle
-              //                       .copyWith(fontWeight: FontWeight.bold),
-              //                 ),
-              //                 Text(
-              //                   'Мужчины',
-              //                   style: AppTheme.infoRegularTextStyle,
-              //                 ),
-              //                 Text(
-              //                   'Женщины',
-              //                   style: AppTheme.infoRegularTextStyle,
-              //                 ),
-              //               ],
-              //             ),
-              //             Column(
-              //               crossAxisAlignment: CrossAxisAlignment.start,
-              //               children: [
-              //                 Text(
-              //                   widget.allCount,
-              //                   style: AppTheme.infoRegularTextStyle
-              //                       .copyWith(fontWeight: FontWeight.bold),
-              //                 ),
-              //                 Text(
-              //                   state.gender?.maleCount.toString() ?? '',
-              //                   style: AppTheme.infoRegularTextStyle,
-              //                 ),
-              //                 Text(
-              //                   state.gender?.femaleCount.toString() ?? '',
-              //                   style: AppTheme.infoRegularTextStyle,
-              //                 )
-              //               ],
-              //             ),
-              //             Container(
-              //               padding: EdgeInsets.all(9.w),
-              //               width: 86.w,
-              //               height: 86.h,
-              //               child: CircularProgressIndicator(
-              //                 value: (state.gender?.femaleCount != null &&
-              //                         double.parse(widget.allCount) != 0)
-              //                     ? state.gender!.femaleCount /
-              //                         double.parse(widget.allCount)
-              //                     : 0,
-              //                 color: const Color(0xFF008FCC),
-              //                 backgroundColor: const Color(0xFFFFB800),
-              //                 strokeWidth: 18,
-              //               ),
-              //             )
-              //           ],
-              //         ),
-              //       ],
-              //     ),
-              //   ),
+              if (state.isGenderSuccess)
+                Container(
+                  padding: EdgeInsets.only(
+                    left: 38.w,
+                    right: 36.w,
+                    top: 22.h,
+                    bottom: 22.h,
+                  ),
+                  color: Colors.white,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'benefic'.tr(),
+                        style: AppTheme.mainAppBarTextStyle,
+                      ),
+                      Text(
+                        'regisData'.tr(),
+                        style: AppTheme.mainSmallTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'all'.tr(),
+                                style: AppTheme.infoRegularTextStyle
+                                    .copyWith(fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'mans'.tr(),
+                                style: AppTheme.infoRegularTextStyle,
+                              ),
+                              Text(
+                                'womans'.tr(),
+                                style: AppTheme.infoRegularTextStyle,
+                              ),
+                            ],
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                allCount.toString(),
+                                style: AppTheme.infoRegularTextStyle
+                                    .copyWith(fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                state.genderCount?.maleCount.toString() ?? '',
+                                style: AppTheme.infoRegularTextStyle,
+                              ),
+                              Text(
+                                state.genderCount?.femaleCount.toString() ?? '',
+                                style: AppTheme.infoRegularTextStyle,
+                              )
+                            ],
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(9.w),
+                            width: 86.w,
+                            height: 86.h,
+                            child: CircularProgressIndicator(
+                              value: (state.genderCount?.femaleCount != null &&
+                                      (allCount) != 0)
+                                  ? state.genderCount!.femaleCount / allCount
+                                  : 0,
+                              color: const Color(0xFF008FCC),
+                              backgroundColor: const Color(0xFFFFB800),
+                              strokeWidth: 18,
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               // if (state.isGenderInitial) const Loader(),
               SizedBox(
                 height: 14.h,
@@ -231,11 +236,11 @@ class _LgotnikiPageState extends State<LgotnikiPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Профильные данные',
+                                'profileData'.tr(),
                                 style: AppTheme.mainAppBarTextStyle,
                               ),
                               Text(
-                                'Данные зарегистрированных пользователей',
+                                'regisData'.tr(),
                                 style: AppTheme.mainSmallTextStyle,
                               ),
                             ],
@@ -250,7 +255,7 @@ class _LgotnikiPageState extends State<LgotnikiPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Фильтр',
+                            'filter'.tr(),
                             style: AppTheme.contingentDeatilRegularTextStyle,
                           ),
                           Expanded(
