@@ -4,5 +4,5 @@ import 'package:fpdart/fpdart.dart';
 
 abstract interface class SkudRepository {
   Future<Either<Failure, List<SkudEntity>>> getSkudList(
-      int page, int? passType);
+      int page, int? passType, String? dateFrom, String? dateTo);
 }

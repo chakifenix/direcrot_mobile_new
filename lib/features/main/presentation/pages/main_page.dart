@@ -129,7 +129,8 @@ class _MainPageState extends State<MainPage> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.only(top: 13.h, bottom: 13.h),
+                        padding: EdgeInsets.only(
+                            top: 13.h, bottom: 13.h, left: 33.w, right: 27.w),
                         color: const Color(0xFFFFB800),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -137,15 +138,23 @@ class _MainPageState extends State<MainPage> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Мангистауская область, город Актау',
-                                  style: TextStyle(fontSize: 10.sp),
+                                SizedBox(
+                                  width: 350.w,
+                                  child: Text(
+                                    'Мангистауская область, город Актау',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 10.sp),
+                                  ),
                                 ),
-                                Text(
-                                  state.schoolName ?? '',
-                                  style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.bold),
+                                SizedBox(
+                                  width: 350.w,
+                                  child: Text(
+                                    state.schoolName ?? '',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 )
                               ],
                             ),

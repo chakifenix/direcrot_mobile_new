@@ -11,13 +11,17 @@ class GetSkudList implements UseCase<List<SkudEntity>, SkudListParams> {
   @override
   Future<Either<Failure, List<SkudEntity>>> call(
       SkudListParams params, String? path) async {
-    return await skudRepository.getSkudList(params.page, params.passType);
+    return await skudRepository.getSkudList(
+        params.page, params.passType, params.dateFrom, params.dateTo);
   }
 }
 
 class SkudListParams {
   final int page;
   final int? passType;
+  final String? dateFrom;
+  final String? dateTo;
 
-  SkudListParams({required this.page, this.passType});
+  SkudListParams(
+      {required this.page, this.passType, this.dateFrom, this.dateTo});
 }

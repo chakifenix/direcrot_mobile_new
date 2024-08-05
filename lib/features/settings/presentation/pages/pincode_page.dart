@@ -49,7 +49,7 @@ class _PincodePageState extends State<PincodePage> {
         leading: const BackButton(color: Colors.white),
         backgroundColor: const Color(0xFF123088),
         title: Text(
-          'pin',
+          'pinCode'.tr(),
           style: const TextStyle(color: Colors.white),
         ),
       ),

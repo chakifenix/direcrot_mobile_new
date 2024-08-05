@@ -30,7 +30,11 @@ class SkudPage extends StatefulWidget {
 class _SkudPageState extends State<SkudPage> {
   int selectedValue = 1;
   int? passType;
+  String? dateFrom;
+  String? dateTo;
   final scrollController = ScrollController();
+  DateTimeRange selectedDates =
+      DateTimeRange(start: DateTime.now(), end: DateTime.now());
 
   @override
   void initState() {
@@ -44,7 +48,8 @@ class _SkudPageState extends State<SkudPage> {
   void _scrollListener() {
     if (scrollController.offset >=
         (scrollController.position.maxScrollExtent - 50)) {
-      context.read<SkudBloc>().add(SkudListDataFetch(passType: passType));
+      context.read<SkudBloc>().add(SkudListDataFetch(
+          passType: passType, dateFrom: dateFrom, dateTo: dateTo));
     } else {}
   }
 
@@ -123,10 +128,10 @@ class _SkudPageState extends State<SkudPage> {
                         SizedBox(
                             // width: MediaQuery.of(context).size.width - 120,
                             child: Text(
-                              'manage'.tr(),
-                              style: AppTheme.mainAppBarSmallTextStyle
-                                  .copyWith(color: Colors.white),
-                            ))
+                          'manage'.tr(),
+                          style: AppTheme.mainAppBarSmallTextStyle
+                              .copyWith(color: Colors.white),
+                        ))
                       ],
                     ),
                   ],
@@ -305,8 +310,58 @@ class _SkudPageState extends State<SkudPage> {
                               hintTitle: items[0]['name'],
                             ),
                           ),
+                          GestureDetector(
+                              onTap: () async {
+                                final pitaniaBloc = context.read<SkudBloc>();
+                                final DateTimeRange? dateTimeRange =
+                                    await showDateRangePicker(
+                                        context: context,
+                                        firstDate: DateTime(2000),
+                                        lastDate: DateTime(3000),
+                                        initialDateRange: selectedDates);
+                                if (dateTimeRange != null) {
+                                  setState(() {
+                                    selectedDates = dateTimeRange;
+                                    dateFrom = DateFormat('yyyy-MM-dd')
+                                        .format(dateTimeRange.start);
+                                    dateTo = DateFormat('yyyy-MM-dd')
+                                        .format(dateTimeRange.end);
+                                  });
+                                }
+                                pitaniaBloc.add(SkudListDataFetch(
+                                    page: 1,
+                                    dateFrom: dateFrom,
+                                    dateTo: dateTo));
+                              },
+                              child: const Icon(Icons.calendar_month_outlined))
                         ],
                       ),
+                      (dateFrom == null)
+                          ? SizedBox()
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                    '${DateFormat('dd.MM.yyyy').format(selectedDates.start)}-${DateFormat('dd.MM.yyyy').format(selectedDates.end)}'),
+                                GestureDetector(
+                                  onTap: () {
+                                    dateFrom = null;
+                                    dateTo = null;
+                                    context.read<SkudBloc>().add(
+                                        SkudListDataFetch(
+                                            page: 1,
+                                            dateFrom: dateFrom,
+                                            dateTo: dateTo));
+                                  },
+                                  child: Text(
+                                    'reset'.tr(),
+                                    style: const TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        color: Colors.blue),
+                                  ),
+                                )
+                              ],
+                            ),
                       (state.isSuccess)
                           ? Expanded(
                               child: SkudList(

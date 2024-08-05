@@ -11,6 +11,7 @@ import 'package:direcrot_mobile_new/features/main/presentation/bloc/main_bloc.da
 import 'package:direcrot_mobile_new/features/onboard/presentation/pages/splash_screen.dart';
 import 'package:direcrot_mobile_new/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:direcrot_mobile_new/features/skud/presentation/bloc/skud_bloc.dart';
+import 'package:direcrot_mobile_new/features/tech_support/presentation/pages/individual_chat_screen.dart';
 import 'package:direcrot_mobile_new/init_dependencies.dart';
 import 'package:direcrot_mobile_new/services/shared_preferences_service.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -67,7 +68,13 @@ class MyApp extends StatelessWidget {
               textTheme: TextTheme(
                   bodyMedium: TextStyle(fontSize: 14.sp, color: Colors.black)),
             ),
-            home: const SplashScreen(),
+            home:
+                // IndividualScreen(
+                //   receiverEmail: 'asd',
+                //   receiverID: '2',
+                //   fullName: 'daasdasd',
+                // ),
+                SplashScreen(),
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

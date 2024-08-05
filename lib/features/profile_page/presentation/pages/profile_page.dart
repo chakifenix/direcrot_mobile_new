@@ -200,15 +200,17 @@ class _ProfilePageState extends State<ProfilePage> {
                           SizedBox(
                             width: 13.w,
                           ),
-                          (lastVisit=='')?Text(
-                            'noInstalled'.tr(),
-                            style: AppTheme.activityRegularTextStyle
-                                .copyWith(color: const Color(0xFFE22626)),
-                          ):Text(
-                            'installed'.tr(),
-                            style: AppTheme.activityRegularTextStyle
-                                .copyWith(color: const Color(0xFF38AE00)),
-                          )
+                          (lastVisit == '')
+                              ? Text(
+                                  'noInstalled'.tr(),
+                                  style: AppTheme.activityRegularTextStyle
+                                      .copyWith(color: const Color(0xFFE22626)),
+                                )
+                              : Text(
+                                  'installed'.tr(),
+                                  style: AppTheme.activityRegularTextStyle
+                                      .copyWith(color: const Color(0xFF38AE00)),
+                                )
                         ],
                       ),
                     ],

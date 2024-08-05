@@ -10,9 +10,10 @@ class SkudRepositoryImpl implements SkudRepository {
   SkudRepositoryImpl(this.skudDataSource);
   @override
   Future<Either<Failure, List<SkudEntity>>> getSkudList(
-      int page, int? passType) {
+      int page, int? passType, String? dateFrom, String? dateTo) {
     return _getSkudList(
-      () async => await skudDataSource.getAllSkudList(page, passType),
+      () async =>
+          await skudDataSource.getAllSkudList(page, passType, dateFrom, dateTo),
     );
   }
 

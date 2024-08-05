@@ -196,11 +196,18 @@ class _PitaniaPageState extends State<PitaniaPage> {
                                 width: 86.w,
                                 height: 86.h,
                                 child: CircularProgressIndicator(
-                                  value: state.pitaniaMetaEntityBenefic!.total
-                                          .toInt() /
-                                      (state.pitaniaMetaEntityBenefic!.total
-                                              .toInt() +
-                                          state.pitaniaLowClass!.total.toInt()),
+                                  value: ((state.pitaniaMetaEntityBenefic!.total
+                                                  .toInt() +
+                                              state.pitaniaLowClass!.total
+                                                  .toInt()) !=
+                                          0)
+                                      ? state.pitaniaMetaEntityBenefic!.total
+                                              .toInt() /
+                                          (state.pitaniaMetaEntityBenefic!.total
+                                                  .toInt() +
+                                              state.pitaniaLowClass!.total
+                                                  .toInt())
+                                      : 0,
                                   color: const Color(0xFF008FCC),
                                   backgroundColor: const Color(0xFFFFB800),
                                   strokeWidth: 18,
@@ -329,14 +336,15 @@ class _PitaniaPageState extends State<PitaniaPage> {
                                     '${DateFormat('dd.MM.yyyy').format(selectedDates.start)}-${DateFormat('dd.MM.yyyy').format(selectedDates.end)}'),
                                 GestureDetector(
                                   onTap: () {
-                                    dateFrom =null;
+                                    dateFrom = null;
                                     dateTo = null;
-                                    context.read<PitaniaBloc>().add(PitaniaListFetch(
-                                    page: 1,
-                                    classFrom: null,
-                                    classTo: null,
-                                    dateFrom: dateFrom,
-                                    dateTo: dateTo));
+                                    context.read<PitaniaBloc>().add(
+                                        PitaniaListFetch(
+                                            page: 1,
+                                            classFrom: null,
+                                            classTo: null,
+                                            dateFrom: dateFrom,
+                                            dateTo: dateTo));
                                   },
                                   child: Text(
                                     'reset'.tr(),

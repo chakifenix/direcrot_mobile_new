@@ -21,7 +21,12 @@ class SkudBloc extends Bloc<SkudEvent, SkudState> {
     final page = event.page ?? state.page;
     print("----Pagination page: ${page} ");
     final res = await _getSkudList(
-        SkudListParams(page: page, passType: event.passType), null);
+        SkudListParams(
+            page: page,
+            passType: event.passType,
+            dateFrom: event.dateFrom,
+            dateTo: event.dateTo),
+        null);
     res.fold(
         (failure) => emit(state.copyWith(
             isPaginationLoading: false,

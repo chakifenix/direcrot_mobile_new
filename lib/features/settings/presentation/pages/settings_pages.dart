@@ -141,21 +141,30 @@ class _SettingsPageState extends State<SettingsPage> {
                     Stack(
                       children: [
                         Container(
-                          padding: EdgeInsets.symmetric(vertical: 13.h),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 13.h, horizontal: 27.w),
                           color: const Color(0xFFFFB800),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Column(
                                 children: [
-                                  Text(
-                                    'Мангистауская область, город Актау',
-                                    style: AppTheme
-                                        .contingentProfileSmallTextStyle,
+                                  SizedBox(
+                                    width: 350.w,
+                                    child: Text(
+                                      textAlign: TextAlign.center,
+                                      'Мангистауская область, город Актау',
+                                      style: AppTheme
+                                          .contingentProfileSmallTextStyle,
+                                    ),
                                   ),
-                                  Text(
-                                    state.schoolName ?? '',
-                                    style: AppTheme.infoCardTextStyle,
+                                  SizedBox(
+                                    width: 350.w,
+                                    child: Text(
+                                      textAlign: TextAlign.center,
+                                      state.schoolName ?? '',
+                                      style: AppTheme.infoCardTextStyle,
+                                    ),
                                   )
                                 ],
                               ),
@@ -314,6 +323,9 @@ class _SettingsPageState extends State<SettingsPage> {
                                     'supportContact'.tr(),
                                     style: AppTheme.infoSmalTextStyle,
                                   ),
+                                ),
+                                SizedBox(
+                                  width: 10.w,
                                 ),
                                 Text(
                                   'support.edus.kz',
