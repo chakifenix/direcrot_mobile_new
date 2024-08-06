@@ -1,4 +1,4 @@
-String baseUrl = "https://api.director.smart.edus.kz/v1/ru";
+String baseUrl = "http://192.168.31.138:8888/v1/kk";
 String loginIin = "/sign-in";
 String loginSms = "/sign";
 String todayAnalytics = '/analytics';
@@ -12,3 +12,4 @@ String pitania = '/food';
 String phone = '/phone';
 String license = '/license';
 String device = '/device';
+String support = '/support/tickets';

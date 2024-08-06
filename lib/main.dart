@@ -11,7 +11,9 @@ import 'package:direcrot_mobile_new/features/main/presentation/bloc/main_bloc.da
 import 'package:direcrot_mobile_new/features/onboard/presentation/pages/splash_screen.dart';
 import 'package:direcrot_mobile_new/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:direcrot_mobile_new/features/skud/presentation/bloc/skud_bloc.dart';
+import 'package:direcrot_mobile_new/features/tech_support/presentation/bloc/support_bloc.dart';
 import 'package:direcrot_mobile_new/features/tech_support/presentation/pages/individual_chat_screen.dart';
+import 'package:direcrot_mobile_new/features/tech_support/presentation/pages/tech_support.dart';
 import 'package:direcrot_mobile_new/init_dependencies.dart';
 import 'package:direcrot_mobile_new/services/shared_preferences_service.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -36,7 +38,8 @@ void main() async {
       BlocProvider(create: (context) => serviceLocator<SkudBloc>()),
       BlocProvider(create: (context) => serviceLocator<PitaniaBloc>()),
       BlocProvider(create: (context) => serviceLocator<LgotnikiBloc>()),
-      BlocProvider(create: (context) => serviceLocator<DeviceBloc>())
+      BlocProvider(create: (context) => serviceLocator<DeviceBloc>()),
+      BlocProvider(create: (context) => serviceLocator<SupportBloc>())
     ],
     child: EasyLocalization(
         supportedLocales: const [
@@ -74,7 +77,8 @@ class MyApp extends StatelessWidget {
                 //   receiverID: '2',
                 //   fullName: 'daasdasd',
                 // ),
-                SplashScreen(),
+                // SplashScreen(),
+                TechSupport(),
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

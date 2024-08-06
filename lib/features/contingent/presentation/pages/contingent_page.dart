@@ -138,17 +138,30 @@ class _ContingentPageState extends State<ContingentPage> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    'teacher'.tr(),
-                                    style: AppTheme.infoRegularTextStyle,
+                                  Container(
+                                    width: 190.w,
+                                    child: Text(
+                                      'teacher'.tr(),
+                                      style: AppTheme.infoRegularTextStyle,
+                                    ),
                                   ),
-                                  Text(
-                                    'student'.tr(),
-                                    style: AppTheme.infoRegularTextStyle,
+                                  Container(
+                                    width: 190.w,
+                                    child: Text(
+                                      'student'.tr(),
+                                      style: AppTheme.infoRegularTextStyle,
+                                    ),
                                   ),
-                                  Text(
-                                    'personal'.tr(),
-                                    style: AppTheme.infoRegularTextStyle,
+                                  Container(
+                                    width: 190.w,
+                                    child: FittedBox(
+                                      alignment: Alignment.topLeft,
+                                      fit: BoxFit.scaleDown,
+                                      child: Text(
+                                        'personal'.tr(),
+                                        style: AppTheme.infoRegularTextStyle,
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -418,9 +431,8 @@ class _ContingentPageState extends State<ContingentPage> {
     int allCount = student + personal + teacher;
     return List.generate(3, (i) {
       final isTouched = i == touchedIndex;
-      final fontSize = isTouched ? 25.0 : 14.sp;
+      final fontSize = isTouched ? 25.0 : 12.sp;
       final radius = isTouched ? 28.0 : 20.0;
-      const shadows = [Shadow(color: Colors.black, blurRadius: 2)];
       switch (i) {
         case 0:
           return PieChartSectionData(
@@ -432,7 +444,6 @@ class _ContingentPageState extends State<ContingentPage> {
               fontSize: fontSize,
               fontWeight: FontWeight.bold,
               color: Colors.black,
-              shadows: shadows,
             ),
           );
         case 1:
@@ -445,7 +456,6 @@ class _ContingentPageState extends State<ContingentPage> {
               fontSize: fontSize,
               fontWeight: FontWeight.bold,
               color: Colors.black,
-              shadows: shadows,
             ),
           );
         case 2:
@@ -458,7 +468,6 @@ class _ContingentPageState extends State<ContingentPage> {
               fontSize: fontSize,
               fontWeight: FontWeight.bold,
               color: Colors.black,
-              shadows: shadows,
             ),
           );
 

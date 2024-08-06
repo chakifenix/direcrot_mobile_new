@@ -5,9 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ObrashenieWidget extends StatelessWidget {
-  const ObrashenieWidget({
-    super.key,
-  });
+  const ObrashenieWidget(
+      {super.key,
+      required this.id,
+      required this.statusId,
+      required this.statusName,
+      required this.date,
+      required this.initialMessage});
+  final String id;
+  final int statusId;
+  final String statusName;
+  final String date;
+  final String initialMessage;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +30,7 @@ class ObrashenieWidget extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(
                 left: 38.w, top: 17.h, right: 28.w, bottom: 14.h),
-            color: const Color(0xFFFFE9C9),
+            color: (statusId == 1) ? Color(0xFFFFE9C9) : Colors.white,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -29,7 +38,7 @@ class ObrashenieWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '# 200132201',
+                      '# $id',
                       style: AppTheme.sendObrIdTextStyle,
                     ),
                     Row(
@@ -42,10 +51,16 @@ class ObrashenieWidget extends StatelessWidget {
                           width: 10.w,
                         ),
                         Container(
-                            color: const Color(0xFFFFB800),
+                            color: (statusId == 1)
+                                ? Color(0xFFFFB800)
+                                : (statusId == 2)
+                                    ? Color(0xFFFF7A00)
+                                    : (statusId == 3)
+                                        ? Color(0xFF38AE00)
+                                        : Colors.black,
                             padding: EdgeInsets.symmetric(horizontal: 8.w),
                             child: Text(
-                              'sent'.tr(),
+                              statusName,
                               style: AppTheme.sendObrSendedTextStyle,
                             ))
                       ],
@@ -56,11 +71,11 @@ class ObrashenieWidget extends StatelessWidget {
                   height: 14.h,
                 ),
                 Text(
-                  'Сұрақ, жүйе ата-аналарға балаларының үлгерімін бақылауға, сабақ кестесін  білуге ...',
+                  initialMessage,
                   style: AppTheme.sendObrContentTextStyle,
                 ),
                 Text(
-                  '04.05.2024 13:44',
+                  date,
                   style: AppTheme.sendObrDateTextStyle,
                 )
               ],

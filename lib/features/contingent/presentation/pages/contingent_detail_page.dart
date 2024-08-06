@@ -145,10 +145,10 @@ class _ContingentDetailPageState extends State<ContingentDetailPage> {
                         SizedBox(
                             // width: MediaQuery.of(context).size.width - 120,
                             child: Text(
-                              'manage'.tr(),
-                              style: AppTheme.mainAppBarSmallTextStyle
-                                  .copyWith(color: Colors.white),
-                            ))
+                          'manage'.tr(),
+                          style: AppTheme.mainAppBarSmallTextStyle
+                              .copyWith(color: Colors.white),
+                        ))
                       ],
                     ),
                   ],

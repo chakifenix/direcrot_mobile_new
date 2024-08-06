@@ -64,6 +64,11 @@ import 'package:direcrot_mobile_new/features/skud/data/repository/skud_repositor
 import 'package:direcrot_mobile_new/features/skud/domain/repository/skud_repository.dart';
 import 'package:direcrot_mobile_new/features/skud/domain/usecases/get_skud_list.dart';
 import 'package:direcrot_mobile_new/features/skud/presentation/bloc/skud_bloc.dart';
+import 'package:direcrot_mobile_new/features/tech_support/data/data_source/support_data_source.dart';
+import 'package:direcrot_mobile_new/features/tech_support/data/repository/support_repository_impl.dart';
+import 'package:direcrot_mobile_new/features/tech_support/domain/repository/support_repository.dart';
+import 'package:direcrot_mobile_new/features/tech_support/domain/usecase/get_ticket_list.dart';
+import 'package:direcrot_mobile_new/features/tech_support/presentation/bloc/support_bloc.dart';
 import 'package:direcrot_mobile_new/services/local_storage.dart';
 import 'package:direcrot_mobile_new/services/shared_preferences_service.dart';
 import 'package:get_it/get_it.dart';
@@ -87,6 +92,7 @@ Future<void> initDependencies() async {
   initPitania();
   initLgotniki();
   initDeviceList();
+  initSupport();
 }
 
 void initAuth() {
@@ -258,4 +264,17 @@ void initDeviceList() {
     ..registerFactory(() => GetDevicesList(serviceLocator()))
     //Bloc
     ..registerLazySingleton(() => DeviceBloc(getDevicesList: serviceLocator()));
+}
+
+void initSupport() {
+  //DataSource
+  serviceLocator
+    ..registerFactory<SupportDataSource>(() => SupportDataSourceImpl())
+    //Repository
+    ..registerFactory<SupportRepository>(
+        () => SupportRepositoryImpl(serviceLocator()))
+    //Usecase
+    ..registerFactory(() => GetTicketList(serviceLocator()))
+    //Bloc
+    ..registerFactory(() => SupportBloc(getTicketList: serviceLocator()));
 }

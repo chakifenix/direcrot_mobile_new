@@ -24,7 +24,7 @@ class DioClient {
     Map<String, dynamic> headersData = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'Authorization': 'Bearer $scopedToken',
+      'Authorization': 'Bearer 1304|lgYvWKuQdxgCaWizdqOwX0ert2sBggXX5TsXbpCI',
       'X-Role-Id': roleId,
       'X-Connection-Id': connectionId
     };
