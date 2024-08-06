@@ -171,5 +171,10 @@
     "code":"A 6-digit code",
     "reset":"Reset",
     "installed":"Installed",
-    "noInstalled":"Not installed"
+    "noInstalled":"Not installed",
+    "topic":"Topic",
+    "description":"Desription",
+    "enterText":"Enter topic",
+    "enterMessage":"Enter text",
+    "addFile":"Add file"
 }

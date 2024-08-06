@@ -93,7 +93,7 @@ class _TechSupportState extends State<TechSupport> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => CreateTicket()));
+                                  builder: (context) => CreateTicketPage()));
                         },
                         child: Container(
                           width: 27.w,
@@ -202,13 +202,15 @@ class _TechSupportState extends State<TechSupport> {
                         itemCount: state.ticketList.length,
                         itemBuilder: (context, index) {
                           return ObrashenieWidget(
-                              id: state.ticketList[index].id.toString(),
-                              statusId: state.ticketList[index].statusId,
-                              statusName: state.ticketList[index].statusName,
-                              date: DateFormat('dd.MM.yyyy HH:mm')
-                                  .format(state.ticketList[index].createdAt),
-                              initialMessage:
-                                  state.ticketList[index].initialMessage);
+                            id: state.ticketList[index].id.toString(),
+                            statusId: state.ticketList[index].statusId,
+                            statusName: state.ticketList[index].statusName,
+                            date: DateFormat('dd.MM.yyyy HH:mm')
+                                .format(state.ticketList[index].createdAt),
+                            initialMessage:
+                                state.ticketList[index].initialMessage,
+                            title: state.ticketList[index].title,
+                          );
                         })),
                 // const ObrashenieWidget()
               ],

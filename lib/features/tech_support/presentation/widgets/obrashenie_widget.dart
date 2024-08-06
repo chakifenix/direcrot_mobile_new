@@ -11,19 +11,29 @@ class ObrashenieWidget extends StatelessWidget {
       required this.statusId,
       required this.statusName,
       required this.date,
-      required this.initialMessage});
+      required this.initialMessage,
+      required this.title});
   final String id;
   final int statusId;
   final String statusName;
   final String date;
+  final String title;
   final String initialMessage;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const TechSupportDetail()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => TechSupportDetail(
+                    id: '$id',
+                    statusId: statusId,
+                    statusName: statusName,
+                    date: date,
+                    initialMessage: initialMessage,
+                    title: title)));
       },
       child: Column(
         children: [

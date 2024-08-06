@@ -67,7 +67,10 @@ import 'package:direcrot_mobile_new/features/skud/presentation/bloc/skud_bloc.da
 import 'package:direcrot_mobile_new/features/tech_support/data/data_source/support_data_source.dart';
 import 'package:direcrot_mobile_new/features/tech_support/data/repository/support_repository_impl.dart';
 import 'package:direcrot_mobile_new/features/tech_support/domain/repository/support_repository.dart';
+import 'package:direcrot_mobile_new/features/tech_support/domain/usecase/create_ticket.dart';
+import 'package:direcrot_mobile_new/features/tech_support/domain/usecase/get_chat_list.dart';
 import 'package:direcrot_mobile_new/features/tech_support/domain/usecase/get_ticket_list.dart';
+import 'package:direcrot_mobile_new/features/tech_support/domain/usecase/send_message.dart';
 import 'package:direcrot_mobile_new/features/tech_support/presentation/bloc/support_bloc.dart';
 import 'package:direcrot_mobile_new/services/local_storage.dart';
 import 'package:direcrot_mobile_new/services/shared_preferences_service.dart';
@@ -275,6 +278,13 @@ void initSupport() {
         () => SupportRepositoryImpl(serviceLocator()))
     //Usecase
     ..registerFactory(() => GetTicketList(serviceLocator()))
+    ..registerFactory(() => CreateTicket(serviceLocator()))
+    ..registerFactory(() => GetChatList(serviceLocator()))
+    ..registerFactory(() => SendMessage(serviceLocator()))
     //Bloc
-    ..registerFactory(() => SupportBloc(getTicketList: serviceLocator()));
+    ..registerFactory(() => SupportBloc(
+        getTicketList: serviceLocator(),
+        createTicket: serviceLocator(),
+        getChatList: serviceLocator(),
+        sendMessage: serviceLocator()));
 }

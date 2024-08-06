@@ -11,8 +11,10 @@ import 'package:direcrot_mobile_new/features/main/presentation/bloc/main_bloc.da
 import 'package:direcrot_mobile_new/features/onboard/presentation/pages/splash_screen.dart';
 import 'package:direcrot_mobile_new/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:direcrot_mobile_new/features/skud/presentation/bloc/skud_bloc.dart';
+import 'package:direcrot_mobile_new/features/tech_support/domain/usecase/create_ticket.dart';
 import 'package:direcrot_mobile_new/features/tech_support/presentation/bloc/support_bloc.dart';
 import 'package:direcrot_mobile_new/features/tech_support/presentation/pages/individual_chat_screen.dart';
+import 'package:direcrot_mobile_new/features/tech_support/presentation/pages/send_problem.dart';
 import 'package:direcrot_mobile_new/features/tech_support/presentation/pages/tech_support.dart';
 import 'package:direcrot_mobile_new/init_dependencies.dart';
 import 'package:direcrot_mobile_new/services/shared_preferences_service.dart';
@@ -72,13 +74,16 @@ class MyApp extends StatelessWidget {
                   bodyMedium: TextStyle(fontSize: 14.sp, color: Colors.black)),
             ),
             home:
-                // IndividualScreen(
-                //   receiverEmail: 'asd',
-                //   receiverID: '2',
-                //   fullName: 'daasdasd',
-                // ),
-                // SplashScreen(),
-                TechSupport(),
+                CreateTicketPage(),
+            //     IndividualScreen(
+            //   receiverEmail: 'asd',
+            //   receiverID: '2',
+            //   fullName: 'daasdasd',
+            //   initMessage: 'message',
+            // ),
+            // SplashScreen(),
+            // TechSupport(),
+
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,

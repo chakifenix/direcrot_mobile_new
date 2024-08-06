@@ -1,12 +1,27 @@
 import 'package:direcrot_mobile_new/core/theme/theme.dart';
 import 'package:direcrot_mobile_new/core/common/widgets/button.dart';
+import 'package:direcrot_mobile_new/features/tech_support/presentation/pages/individual_chat_screen.dart';
 import 'package:direcrot_mobile_new/features/tech_support/presentation/widgets/status_otveta.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TechSupportDetail extends StatelessWidget {
-  const TechSupportDetail({super.key});
+  final String id;
+  final int statusId;
+  final String statusName;
+  final String date;
+  final String title;
+  final String initialMessage;
+
+  const TechSupportDetail(
+      {super.key,
+      required this.id,
+      required this.statusId,
+      required this.statusName,
+      required this.date,
+      required this.initialMessage,
+      required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +97,7 @@ class TechSupportDetail extends StatelessWidget {
                             style: AppTheme.sendObrStatusTextStyle,
                           ),
                           Text(
-                            '# 200132033',
+                            '# $id',
                             style: AppTheme.sendObrIdTextStyle,
                           )
                         ],
@@ -96,7 +111,10 @@ class TechSupportDetail extends StatelessWidget {
                           SizedBox(
                             width: 10.w,
                           ),
-                          const StatusOtveta()
+                          StatusOtveta(
+                            statusId: statusId,
+                            statusName: statusName,
+                          )
                         ],
                       )
                     ],
@@ -105,14 +123,14 @@ class TechSupportDetail extends StatelessWidget {
                     height: 23.h,
                   ),
                   Text(
-                    '02.05.2024 18:07',
+                    date,
                     style: AppTheme.sendObrDateTextStyle,
                   ),
                   SizedBox(
                     height: 11.h,
                   ),
                   Text(
-                    'Мұғалімдерге сабақтардың журналын электронды түрде жүргізуге, бағалауға,  пәндердің оқу материалдары мен жоспарларын жасақтау мүмкіндігі қарастырылса деген ұсыныс бар. \n\nМұғалімдерімізге сабақтарды дұрыс жолға қою үшін мектепке келіп түсіндірме жұмыстарын жүргізсеңіздер. Көптеген мұғалімдер жаңадан келген, көбісі жастар. Осы тұстарын ескерсеңіздер. Жауап күтемін',
+                    initialMessage,
                     style: AppTheme.sendObrContentTextStyle,
                   )
                 ],
@@ -163,75 +181,91 @@ class TechSupportDetail extends StatelessWidget {
             SizedBox(
               height: 14.h,
             ),
-            AppButton(title: 'evaluate'.tr(), pressAction: () {}),
+            AppButton(
+                title: 'Написать',
+                pressAction: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => IndividualScreen(
+                                receiverEmail: 'receiverEmail',
+                                receiverID: 'receiverID',
+                                fullName: 'fullName',
+                                initMessage: initialMessage,
+                              )));
+                }),
             SizedBox(
               height: 14.h,
             ),
-            Container(
-              padding: EdgeInsets.only(
-                  left: 38.w, top: 14.h, right: 40.w, bottom: 17.h),
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'history'.tr(),
-                    style: AppTheme.sendObrIdTextStyle,
-                  ),
-                  SizedBox(
-                    height: 25.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '02.05.2024 18:07',
-                        style: AppTheme.sendObrContentTextStyle,
-                      ),
-                      const StatusOtveta(),
-                      Text(
-                        'requestSent'.tr(),
-                        style: AppTheme.sendObrStatusTextStyle,
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 18.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '02.05.2024 18:07',
-                        style: AppTheme.sendObrContentTextStyle,
-                      ),
-                      const StatusOtveta(),
-                      Text(
-                        'requestSent'.tr(),
-                        style: AppTheme.sendObrStatusTextStyle,
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: 18.h,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '02.05.2024 18:07',
-                        style: AppTheme.sendObrContentTextStyle,
-                      ),
-                      const StatusOtveta(),
-                      Text(
-                        'requestSent'.tr(),
-                        style: AppTheme.sendObrStatusTextStyle,
-                      )
-                    ],
-                  )
-                ],
-              ),
-            )
+            AppButton(title: 'evaluate'.tr(), pressAction: () {}),
+            // SizedBox(
+            //   height: 14.h,
+            // ),
+            // Container(
+            //   padding: EdgeInsets.only(
+            //       left: 38.w, top: 14.h, right: 40.w, bottom: 17.h),
+            //   color: Colors.white,
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Text(
+            //         'history'.tr(),
+            //         style: AppTheme.sendObrIdTextStyle,
+            //       ),
+            //       SizedBox(
+            //         height: 25.h,
+            //       ),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             '02.05.2024 18:07',
+            //             style: AppTheme.sendObrContentTextStyle,
+            //           ),
+            //           const StatusOtveta(),
+            //           Text(
+            //             'requestSent'.tr(),
+            //             style: AppTheme.sendObrStatusTextStyle,
+            //           )
+            //         ],
+            //       ),
+            //       SizedBox(
+            //         height: 18.h,
+            //       ),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             '02.05.2024 18:07',
+            //             style: AppTheme.sendObrContentTextStyle,
+            //           ),
+            //           const StatusOtveta(),
+            //           Text(
+            //             'requestSent'.tr(),
+            //             style: AppTheme.sendObrStatusTextStyle,
+            //           )
+            //         ],
+            //       ),
+            //       SizedBox(
+            //         height: 18.h,
+            //       ),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             '02.05.2024 18:07',
+            //             style: AppTheme.sendObrContentTextStyle,
+            //           ),
+            //           const StatusOtveta(),
+            //           Text(
+            //             'requestSent'.tr(),
+            //             style: AppTheme.sendObrStatusTextStyle,
+            //           )
+            //         ],
+            //       )
+            //     ],
+            //   ),
+            // )
           ],
         ),
       ),
