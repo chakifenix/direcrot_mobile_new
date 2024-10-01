@@ -54,6 +54,12 @@ class _SkudPageState extends State<SkudPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> items = [
       {'name': 'allActive'.tr(), 'value': 1},
@@ -267,6 +273,9 @@ class _SkudPageState extends State<SkudPage> {
                             'filter'.tr(),
                             style: AppTheme.contingentDeatilRegularTextStyle,
                           ),
+                          SizedBox(
+                            width: 10.w,
+                          ),
                           Expanded(
                             child: DropdownButtonCustom(
                               items: items,
@@ -279,7 +288,10 @@ class _SkudPageState extends State<SkudPage> {
                                 if (selectedValue == 2) {
                                   passType = 1;
                                   pitaniaBloc.add(SkudListDataFetch(
-                                      page: 1, passType: passType));
+                                      page: 1,
+                                      passType: passType,
+                                      dateFrom: dateFrom,
+                                      dateTo: dateTo));
                                   scrollController.animateTo(
                                     0.0,
                                     duration: const Duration(milliseconds: 300),
@@ -289,7 +301,10 @@ class _SkudPageState extends State<SkudPage> {
                                 if (selectedValue == 1) {
                                   passType = null;
                                   pitaniaBloc.add(SkudListDataFetch(
-                                      page: 1, passType: passType));
+                                      page: 1,
+                                      passType: passType,
+                                      dateFrom: dateFrom,
+                                      dateTo: dateTo));
                                   scrollController.animateTo(
                                     0.0,
                                     duration: const Duration(milliseconds: 300),
@@ -299,7 +314,10 @@ class _SkudPageState extends State<SkudPage> {
                                 if (selectedValue == 3) {
                                   passType = 2;
                                   pitaniaBloc.add(SkudListDataFetch(
-                                      page: 1, passType: passType));
+                                      page: 1,
+                                      passType: passType,
+                                      dateFrom: dateFrom,
+                                      dateTo: dateTo));
                                   scrollController.animateTo(
                                     0.0,
                                     duration: const Duration(milliseconds: 300),
@@ -309,6 +327,9 @@ class _SkudPageState extends State<SkudPage> {
                               },
                               hintTitle: items[0]['name'],
                             ),
+                          ),
+                          SizedBox(
+                            width: 10.w,
                           ),
                           GestureDetector(
                               onTap: () async {
@@ -331,7 +352,8 @@ class _SkudPageState extends State<SkudPage> {
                                 pitaniaBloc.add(SkudListDataFetch(
                                     page: 1,
                                     dateFrom: dateFrom,
-                                    dateTo: dateTo));
+                                    dateTo: dateTo,
+                                    passType: passType));
                               },
                               child: const Icon(Icons.calendar_month_outlined))
                         ],
@@ -347,11 +369,15 @@ class _SkudPageState extends State<SkudPage> {
                                   onTap: () {
                                     dateFrom = null;
                                     dateTo = null;
+                                    selectedDates = DateTimeRange(
+                                        start: DateTime.now(),
+                                        end: DateTime.now());
                                     context.read<SkudBloc>().add(
                                         SkudListDataFetch(
                                             page: 1,
                                             dateFrom: dateFrom,
-                                            dateTo: dateTo));
+                                            dateTo: dateTo,
+                                            passType: passType));
                                   },
                                   child: Text(
                                     'reset'.tr(),

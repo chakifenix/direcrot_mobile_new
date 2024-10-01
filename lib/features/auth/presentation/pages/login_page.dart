@@ -6,6 +6,7 @@ import 'package:direcrot_mobile_new/features/auth/presentation/pages/failed_page
 import 'package:direcrot_mobile_new/features/auth/presentation/pages/sms_auth_page.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -106,6 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                       FocusManager.instance.primaryFocus?.unfocus();
                     },
                     maxLength: _maxLength,
+                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.black,
                     style: const TextStyle(color: Colors.black),

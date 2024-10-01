@@ -48,6 +48,12 @@ class _ContingentDetailPageState extends State<ContingentDetailPage> {
   final List<String> listInfo = ['Вход', 'Выход'];
 
   @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
+  }
+
+  @override
   void initState() {
     super.initState();
     if (widget.contingentType == 'учитель') {
@@ -184,7 +190,7 @@ class _ContingentDetailPageState extends State<ContingentDetailPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'total'.tr(),
+                                'totalB'.tr(),
                                 style: AppTheme.infoRegularTextStyle
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),

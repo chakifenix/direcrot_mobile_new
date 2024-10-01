@@ -65,6 +65,12 @@ class _ContingentStudentPageState extends State<ContingentStudentPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return PopScope(
       child: Scaffold(
@@ -135,10 +141,10 @@ class _ContingentStudentPageState extends State<ContingentStudentPage> {
                           SizedBox(
                               // width: MediaQuery.of(context).size.width - 120,
                               child: Text(
-                                'manage'.tr(),
-                                style: AppTheme.mainAppBarSmallTextStyle
-                                    .copyWith(color: Colors.white),
-                              ))
+                            'manage'.tr(),
+                            style: AppTheme.mainAppBarSmallTextStyle
+                                .copyWith(color: Colors.white),
+                          ))
                         ],
                       ),
                     ],

@@ -176,5 +176,10 @@
     "description":"Описания проблемы",
     "enterText":"Введите тему",
     "enterMessage":"Введите текст",
-    "addFile":"Добавить файл"
+    "addFile":"Добавить файл",
+    "evaluateService":"Оцените качество обслуживания",
+    "manager":"Менеджер",
+    "dateProf":"Время",
+    "writeChat":"Написать",
+    "acoount":"Профиль аккаунта"
 }

@@ -20,6 +20,13 @@ class _SplashScreenState extends State<SplashScreen>
   final sharedService = serviceLocator<SharedPreferencesService>();
   late AnimationController _controller;
   late Animation<double> animation;
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
+
   @override
   void initState() {
     _controller =

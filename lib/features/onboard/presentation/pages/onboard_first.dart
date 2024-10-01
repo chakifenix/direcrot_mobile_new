@@ -20,90 +20,93 @@ class OnboardFirst extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      child: Stack(
-        children: [
-          Image.asset(image),
-          Positioned(
-              left: 300.w,
-              top: 75.h,
-              child: Image.asset(
-                'images/logo_sp.png',
-                width: 80.w,
-                height: 80.h,
-              )),
-          Positioned(
-            top: 380.h,
-            child: ClipPath(
-              clipper: WaveClipper(),
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 70.w),
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                color: const Color(0xFF046BC8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 190.h,
-                    ),
-                    SizedBox(
-                      child: Text(
-                        title,
-                        style: AppTheme.displayLarge
-                            .copyWith(color: Colors.white, letterSpacing: -2),
+    return SingleChildScrollView(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Stack(
+          children: [
+            Image.asset(image),
+            Positioned(
+                left: 300.w,
+                top: 75.h,
+                child: Image.asset(
+                  'images/logo_sp.png',
+                  width: 80.w,
+                  height: 80.h,
+                )),
+            Positioned(
+              top: 380.h,
+              child: ClipPath(
+                clipper: WaveClipper(),
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 70.w),
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  color: const Color(0xFF046BC8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 190.h,
                       ),
-                    ),
-                    SizedBox(
-                      height: 21.h,
-                    ),
-                    RichText(
-                      text: TextSpan(children: [
-                        TextSpan(
-                            text: subTitle1,
-                            style: AppTheme.displayMedium.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold)
-                            // AppTheme
-                            //     .lightThemeMode.textTheme.displayMedium!
-                            //     .copyWith(
-                            //         color: Colors.white,
-                            //         fontWeight: FontWeight.bold),
-                            ),
-                        // TextSpan(
-                        //     text: subTitle2,
-                        //     style: AppTheme
-                        //         .lightThemeMode.textTheme.displayMedium!
-                        //         .copyWith(color: Colors.white))
-                      ]),
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 190.w),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 2.w),
-                          borderRadius: BorderRadius.circular(12.r)),
-                      child: CupertinoButton(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20.h, vertical: 6.h),
-                          color: Colors.transparent,
-                          child: FittedBox(
-                              fit: BoxFit.scaleDown, child: Text('next'.tr())),
-                          onPressed: () {
-                            controller.nextPage(
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.easeIn);
-                          }),
-                    )
-                  ],
+                      SizedBox(
+                        child: Text(
+                          title,
+                          style: AppTheme.displayLarge
+                              .copyWith(color: Colors.white, letterSpacing: -2),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 21.h,
+                      ),
+                      RichText(
+                        text: TextSpan(children: [
+                          TextSpan(
+                              text: subTitle1,
+                              style: AppTheme.displayMedium.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)
+                              // AppTheme
+                              //     .lightThemeMode.textTheme.displayMedium!
+                              //     .copyWith(
+                              //         color: Colors.white,
+                              //         fontWeight: FontWeight.bold),
+                              ),
+                          // TextSpan(
+                          //     text: subTitle2,
+                          //     style: AppTheme
+                          //         .lightThemeMode.textTheme.displayMedium!
+                          //         .copyWith(color: Colors.white))
+                        ]),
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 190.w),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white, width: 2.w),
+                            borderRadius: BorderRadius.circular(12.r)),
+                        child: CupertinoButton(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20.h, vertical: 6.h),
+                            color: Colors.transparent,
+                            child: FittedBox(
+                                fit: BoxFit.scaleDown,
+                                child: Text('next'.tr())),
+                            onPressed: () {
+                              controller.nextPage(
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.easeIn);
+                            }),
+                      )
+                    ],
+                  ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

@@ -58,13 +58,15 @@ class NewsCard extends StatelessWidget {
                   children: [
                     Text(
                       '$date  | $id',
-                      style: AppTheme.infoCardRegularTextStyle,
+                      style: AppTheme.infoCardRegularTextStyle
+                          .copyWith(fontSize: 12.sp),
                     ),
                     SizedBox(
                       width: 260.w,
                       child: Text(
                         title,
-                        style: AppTheme.infoCardTextStyle,
+                        style: AppTheme.infoCardTextStyle
+                            .copyWith(fontSize: 14.sp),
                       ),
                     ),
                     SizedBox(
@@ -73,7 +75,8 @@ class NewsCard extends StatelessWidget {
                         maxLines: 4,
                         content,
                         overflow: TextOverflow.ellipsis,
-                        style: AppTheme.infoCardRegularTextStyle,
+                        style: AppTheme.infoCardRegularTextStyle
+                            .copyWith(fontSize: 12.sp),
                       ),
                     )
                   ],

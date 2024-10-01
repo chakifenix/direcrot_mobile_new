@@ -51,6 +51,13 @@ class _LgotnikiPageState extends State<LgotnikiPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
+    scrollController.removeListener(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<LgotnikiBloc, LgotnikiState>(
@@ -126,10 +133,10 @@ class _LgotnikiPageState extends State<LgotnikiPage> {
                         SizedBox(
                             // width: MediaQuery.of(context).size.width - 120,
                             child: Text(
-                              'manage'.tr(),
-                              style: AppTheme.mainAppBarSmallTextStyle
-                                  .copyWith(color: Colors.white),
-                            ))
+                          'manage'.tr(),
+                          style: AppTheme.mainAppBarSmallTextStyle
+                              .copyWith(color: Colors.white),
+                        ))
                       ],
                     ),
                   ],

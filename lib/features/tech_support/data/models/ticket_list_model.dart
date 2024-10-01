@@ -19,6 +19,6 @@ class TicketListModel extends TicketListEntity {
           initialMessage: json['initial_message'],
           categoryName: json["category_name"],
           createdAt: DateTime.parse(json["created_at"]),
-          statusName: json["status_name"],
+          statusName: json["status_name"] ?? '',
           statusId: json['status_id']);
 }

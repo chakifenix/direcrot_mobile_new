@@ -257,6 +257,9 @@ class _ProfilePageState extends State<ProfilePage> {
                               'filter'.tr(),
                               style: AppTheme.contingentDeatilRegularTextStyle,
                             ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
                             Expanded(
                               child: DropdownButtonCustom(
                                 items:
@@ -283,9 +286,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         (state.isPassSuccess)
                             ? Expanded(
                                 child: (selectedValue == 3)
-                                    ? const ProfileNagruzkaList()
+                                    ? const SizedBox()
+                                    // ProfileNagruzkaList()
                                     : (selectedValue == 2)
-                                        ? const ScheduleList()
+                                        ? const SizedBox()
+                                        // ScheduleList()
                                         : (selectedValue == 1)
                                             ? DevicesList(
                                                 passInfo: state.passInfo,

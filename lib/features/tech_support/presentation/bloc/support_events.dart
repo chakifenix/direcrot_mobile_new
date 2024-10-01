@@ -19,10 +19,27 @@ class CreateTicketFetch extends SupportEvent {
 
 class ImportFile extends SupportEvent {}
 
-class GetChatListFetch extends SupportEvent {}
+class GetChatListFetch extends SupportEvent {
+  final String ticketId;
+  GetChatListFetch(this.ticketId);
+}
 
 class SendMessageFetch extends SupportEvent {
   final String message;
   final String orderNum;
-  SendMessageFetch(this.message, this.orderNum);
+  final String path;
+  SendMessageFetch(this.message, this.orderNum, this.path);
+}
+
+class FilePageFetch extends SupportEvent {}
+
+class EvaluateTicketFetch extends SupportEvent {
+  final String grade;
+  final String path;
+  EvaluateTicketFetch(this.grade, this.path);
+}
+
+class CloseTicketFetch extends SupportEvent {
+  final String path;
+  CloseTicketFetch(this.path);
 }

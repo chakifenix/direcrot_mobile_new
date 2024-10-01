@@ -10,6 +10,7 @@ import 'package:direcrot_mobile_new/features/settings/presentation/pages/profile
 import 'package:direcrot_mobile_new/features/tech_support/presentation/pages/tech_support.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:open_file/open_file.dart';
@@ -202,9 +203,9 @@ class _SettingsPageState extends State<SettingsPage> {
                             children: [
                               GestureDetector(
                                 onTap: () {
-                                  downloadAndOpenFile(
-                                      'https://axiomabio.com/pdf/test.pdf',
-                                      'sample.pdf');
+                                  // downloadAndOpenFile(
+                                  //     'https://axiomabio.com/pdf/test.pdf',
+                                  //     'sample.pdf');
                                 },
                                 child: Text(
                                   'download'.tr(),
@@ -327,10 +328,17 @@ class _SettingsPageState extends State<SettingsPage> {
                                 SizedBox(
                                   width: 10.w,
                                 ),
-                                Text(
-                                  'support.edus.kz',
-                                  style: AppTheme.infoSmalTextStyle
-                                      .copyWith(color: const Color(0xFF046BC8)),
+                                SizedBox(
+                                  width: 85.w,
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Text(
+                                      'support.edus.kz',
+                                      style: AppTheme.infoSmalTextStyle
+                                          .copyWith(
+                                              color: const Color(0xFF046BC8)),
+                                    ),
+                                  ),
                                 )
                               ],
                             ),

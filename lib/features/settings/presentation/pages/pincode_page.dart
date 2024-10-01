@@ -192,7 +192,7 @@ class _PincodePageState extends State<PincodePage> {
                               }
                             },
                             child: Text(
-                              'Сақтау',
+                              'save'.tr(),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16.sp,

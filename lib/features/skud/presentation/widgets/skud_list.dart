@@ -61,6 +61,7 @@ class SkudList extends StatelessWidget {
                 decoration:
                     const BoxDecoration(border: Border(top: BorderSide())),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(
                         width: 61.w,
@@ -85,15 +86,29 @@ class SkudList extends StatelessWidget {
                       width: 46.w,
                     ),
                     (listNames[index].passTypeId == 1)
-                        ? Text(
-                            'enter'.tr(),
-                            style: AppTheme.contingentDeatilRegularTextStyle
-                                .copyWith(color: Colors.green),
+                        ? SizedBox(
+                            width: 50.w,
+                            child: FittedBox(
+                              alignment: Alignment.topLeft,
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                'enter'.tr(),
+                                style: AppTheme.contingentDeatilRegularTextStyle
+                                    .copyWith(color: Colors.green),
+                              ),
+                            ),
                           )
-                        : Text(
-                            'exit'.tr(),
-                            style: AppTheme.contingentDeatilRegularTextStyle
-                                .copyWith(color: Colors.red),
+                        : SizedBox(
+                            width: 50.w,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              alignment: Alignment.topLeft,
+                              child: Text(
+                                'exit'.tr(),
+                                style: AppTheme.contingentDeatilRegularTextStyle
+                                    .copyWith(color: Colors.red),
+                              ),
+                            ),
                           )
                   ],
                 ),

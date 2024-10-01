@@ -20,7 +20,7 @@ class StatusOtveta extends StatelessWidget {
                 ? Color(0xFFFF7A00)
                 : (statusId == 3)
                     ? Color(0xFF38AE00)
-                    : Colors.black,
+                    : Colors.blue,
         padding: EdgeInsets.symmetric(horizontal: 8.w),
         child: Text(
           statusName,

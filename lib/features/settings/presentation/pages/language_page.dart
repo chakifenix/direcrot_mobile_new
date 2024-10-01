@@ -6,6 +6,7 @@ import 'package:direcrot_mobile_new/features/contingent/presentation/bloc/contin
 import 'package:direcrot_mobile_new/features/information/presentation/bloc/news_bloc.dart';
 import 'package:direcrot_mobile_new/features/main/presentation/bloc/main_bloc.dart';
 import 'package:direcrot_mobile_new/features/settings/presentation/bloc/settings_bloc.dart';
+import 'package:direcrot_mobile_new/services/session_manager/session_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -298,6 +299,8 @@ class _LanguageScreenState extends State<LanguageScreen> {
                                     context
                                         .read<ContingentBloc>()
                                         .add(ContingentDataFetch());
+                                    SessionController()
+                                        .saveLanguageCode('${context.locale}');
                                     Navigator.pop(context, context.locale);
                                   }))
                         ],

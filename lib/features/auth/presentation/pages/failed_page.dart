@@ -13,141 +13,144 @@ class FailedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(left: 53.w, right: 20.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 148.h,
-            ),
-            SvgPicture.asset(
-              'images/x-icon.svg',
-              width: 55.w,
-              height: 53.h,
-            ),
-            SizedBox(
-              height: 22.h,
-            ),
-            Text(
-              'authFailTitle'.tr(),
-              style: AppTheme.authMediumTextStyle.copyWith(
-                  color: const Color(0xFFE22626), fontWeight: FontWeight.bold),
-            ),
-            Text(
-              'authFailCont'.tr(),
-              style: AppTheme.authMediumTextStyle,
-            ),
-            SizedBox(
-              height: 42.h,
-            ),
-            Text(
-              'authFailPos'.tr(),
-              style: AppTheme.authMediumTextStyle,
-            ),
-            SizedBox(
-              height: 23.h,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '1. ',
-                  style: AppTheme.authMediumTextStyle,
-                ),
-                SizedBox(
-                  width: 279,
-                  child: Text(
-                    'authFail1'.tr(),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(left: 53.w, right: 20.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 148.h,
+              ),
+              SvgPicture.asset(
+                'images/x-icon.svg',
+                width: 55.w,
+                height: 53.h,
+              ),
+              SizedBox(
+                height: 22.h,
+              ),
+              Text(
+                'authFailTitle'.tr(),
+                style: AppTheme.authMediumTextStyle.copyWith(
+                    color: const Color(0xFFE22626),
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'authFailCont'.tr(),
+                style: AppTheme.authMediumTextStyle,
+              ),
+              SizedBox(
+                height: 42.h,
+              ),
+              Text(
+                'authFailPos'.tr(),
+                style: AppTheme.authMediumTextStyle,
+              ),
+              SizedBox(
+                height: 23.h,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '1. ',
                     style: AppTheme.authMediumTextStyle,
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 22.h,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '2. ',
-                  style: AppTheme.authMediumTextStyle,
-                ),
-                SizedBox(
-                  width: 275,
-                  child: Text(
-                    'authFail2'.tr(),
+                  SizedBox(
+                    width: 279,
+                    child: Text(
+                      'authFail1'.tr(),
+                      style: AppTheme.authMediumTextStyle,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 22.h,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '2. ',
                     style: AppTheme.authMediumTextStyle,
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 22.h,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '3. ',
-                  style: AppTheme.authMediumTextStyle,
-                ),
-                SizedBox(
-                  width: 275,
-                  child: Text(
-                    'authFail3'.tr(),
+                  SizedBox(
+                    width: 275,
+                    child: Text(
+                      'authFail2'.tr(),
+                      style: AppTheme.authMediumTextStyle,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 22.h,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '3. ',
                     style: AppTheme.authMediumTextStyle,
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 43.h,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 60.w,
-                ),
-                SizedBox(
-                    width: 170.w,
-                    child: AppButton(
-                        title: 'authFailKnow'.tr(),
-                        pressAction: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SupportPage()));
-                        })),
-              ],
-            ),
-            SizedBox(
-              height: 69.h,
-            ),
-            Row(
-              children: [
-                SizedBox(
-                  width: 40.w,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage()),
-                        (route) => false);
-                  },
-                  child: Text(
-                    'authFailRe'.tr(),
-                    style: AppTheme.authMediumTextStyle.copyWith(
-                        color: const Color(0xFF046BC8),
-                        decoration: TextDecoration.underline),
+                  SizedBox(
+                    width: 275,
+                    child: Text(
+                      'authFail3'.tr(),
+                      style: AppTheme.authMediumTextStyle,
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              ),
+              SizedBox(
+                height: 43.h,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 60.w,
+                  ),
+                  SizedBox(
+                      width: 170.w,
+                      child: AppButton(
+                          title: 'authFailKnow'.tr(),
+                          pressAction: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const SupportPage()));
+                          })),
+                ],
+              ),
+              SizedBox(
+                height: 69.h,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 40.w,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()),
+                          (route) => false);
+                    },
+                    child: Text(
+                      'authFailRe'.tr(),
+                      style: AppTheme.authMediumTextStyle.copyWith(
+                          color: const Color(0xFF046BC8),
+                          decoration: TextDecoration.underline),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

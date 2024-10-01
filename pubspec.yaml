@@ -70,7 +70,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "images/logo_sp.png"
+  image_path: "images/logo_edus_d.png"
   remove_alpha_ios: true
 
   # The "flutter_lints" package below contains a set of recommended lints to

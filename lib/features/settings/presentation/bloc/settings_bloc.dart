@@ -38,6 +38,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     final phoneNumber = await LocalStorage().readValue('phoneNumber');
     final email = await LocalStorage().readValue('email');
     final genderId = await LocalStorage().readValue('genderId');
+    final iin = await LocalStorage().readValue('iin');
+    final birthDay = await LocalStorage().readValue('birthDay');
     String? profileImage = await LocalStorage().readValue('imagePath');
     if (await File(profileImage ?? '').exists()) {
       debugPrint('Файл найден: $profileImage');
@@ -53,6 +55,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         phoneNumber: phoneNumber,
         imagePath: profileImage,
         genderId: genderId,
+        iin: iin,
+        birthDay: birthDay,
         phoneController: TextEditingController(text: phoneNumber)));
   }
 

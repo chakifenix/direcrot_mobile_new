@@ -18,18 +18,21 @@ class DevicesList extends StatelessWidget {
             SizedBox(
                 width: 72.w,
                 child: Text(
-                  'today2'.tr(),
+                  textAlign: TextAlign.center,
+                  'dateProf'.tr(),
                   style: AppTheme.profileInfoListTextStyle,
                 )),
             SizedBox(
                 width: 120.w,
                 child: Text(
+                  textAlign: TextAlign.center,
                   'device'.tr(),
                   style: AppTheme.profileInfoListTextStyle,
                 )),
             SizedBox(
                 width: 90.w,
                 child: Text(
+                  textAlign: TextAlign.center,
                   'passInfo'.tr(),
                   style: AppTheme.profileInfoListTextStyle,
                 )),
@@ -83,7 +86,6 @@ class DevicesList extends StatelessWidget {
                         SizedBox(
                             width: 120.w,
                             child: FittedBox(
-                              alignment: Alignment.centerLeft,
                               fit: BoxFit.scaleDown,
                               child: Text(
                                 textAlign: TextAlign.start,

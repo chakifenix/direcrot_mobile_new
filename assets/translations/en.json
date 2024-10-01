@@ -176,5 +176,10 @@
     "description":"Desription",
     "enterText":"Enter topic",
     "enterMessage":"Enter text",
-    "addFile":"Add file"
+    "addFile":"Add file",
+    "evaluateService":"Evaluate the quality of service",
+    "manager":"Manager",
+    "dateProf":"Time",
+    "writeChat":"Write",
+    "acoount":"Account Profile"
 }

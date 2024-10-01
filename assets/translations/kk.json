@@ -176,5 +176,10 @@
     "description":"Мәселенің сипаттамасы",
     "enterText":"Тақырыпты енгізіңіз",
     "enterMessage":"Мәтінді енгізіңіз",
-    "addFile":"Файл қосу"
+    "addFile":"Файл қосу",
+    "evaluateService":"Қызмет көрсету сапасын бағалаңыз",
+    "manager":"Менеджер",
+    "dateProf":"Уақыты",
+    "writeChat":"Жазу",
+    "acoount":"Жеке парақша"
 }

@@ -51,6 +51,13 @@ class _PitaniaPageState extends State<PitaniaPage> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    scrollController.dispose();
+    scrollController.removeListener(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer<PitaniaBloc, PitaniaState>(
@@ -338,11 +345,14 @@ class _PitaniaPageState extends State<PitaniaPage> {
                                   onTap: () {
                                     dateFrom = null;
                                     dateTo = null;
+                                    selectedDates = DateTimeRange(
+                                        start: DateTime.now(),
+                                        end: DateTime.now());
                                     context.read<PitaniaBloc>().add(
                                         PitaniaListFetch(
                                             page: 1,
-                                            classFrom: null,
-                                            classTo: null,
+                                            classFrom: classFrom,
+                                            classTo: classTo,
                                             dateFrom: dateFrom,
                                             dateTo: dateTo));
                                   },

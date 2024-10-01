@@ -28,4 +28,8 @@ class SessionController {
   Future<void> savePhoneNumber(String phoneNumber) async {
     localStorage.setValue('phoneNumber', phoneNumber);
   }
+
+  Future<void> saveLanguageCode(String code) async {
+    localStorage.setValue('code', code);
+  }
 }

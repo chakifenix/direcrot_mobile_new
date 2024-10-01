@@ -2,6 +2,7 @@ import 'package:direcrot_mobile_new/core/theme/theme.dart';
 import 'package:direcrot_mobile_new/core/common/widgets/button.dart';
 import 'package:direcrot_mobile_new/features/onboard/presentation/pages/onboarding_screen.dart';
 import 'package:direcrot_mobile_new/features/onboard/presentation/widgets/circular_check_box.dart';
+import 'package:direcrot_mobile_new/services/session_manager/session_controller.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -144,6 +145,8 @@ class _SelectLanguagePageState extends State<SelectLanguagePage> {
                                 : (engBox)
                                     ? context.setLocale(const Locale('en'))
                                     : context.setLocale(const Locale('ru'));
+                        SessionController()
+                            .saveLanguageCode('${context.locale}');
                         Navigator.push(context, OnboardingScreen.route());
                         // setState(() {
                         //   widget.controller.nextPage(

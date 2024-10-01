@@ -1,11 +1,11 @@
 import 'package:direcrot_mobile_new/core/common/widgets/button.dart';
+import 'package:direcrot_mobile_new/core/util/show_snackbar.dart';
 import 'package:direcrot_mobile_new/features/tech_support/presentation/bloc/support_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 class CreateTicketPage extends StatefulWidget {
   const CreateTicketPage({super.key});
@@ -25,13 +25,30 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
   TextEditingController content = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    context.read<SupportBloc>().add(FilePageFetch());
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    topic.dispose();
+    content.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('data'),
+        title: Text('support'.tr()),
       ),
       body: BlocConsumer<SupportBloc, SupportState>(
-        listener: (BuildContext context, SupportState state) {},
+        listener: (BuildContext context, SupportState state) {
+          if (state.isImportFailure) {
+            showSnackBar(context, state.error ?? '');
+          }
+        },
         builder: (BuildContext context, SupportState state) {
           return Padding(
             padding: EdgeInsets.only(left: 20.w, right: 20.w),
@@ -86,6 +103,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                         height: 7.h,
                       ),
                       TextField(
+                        style: TextStyle(color: Colors.black),
                         onTapOutside: (event) {
                           FocusManager.instance.primaryFocus?.unfocus();
                         },
@@ -181,7 +199,7 @@ class _CreateTicketPageState extends State<CreateTicketPage> {
                                         initMessage: content.text,
                                         title: topic.text,
                                         files: state.imageFile));
-                                Navigator.pop(context);
+                                Navigator.pop(context, 'success');
                               }))
                     ],
                   ),

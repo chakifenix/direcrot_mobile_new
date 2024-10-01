@@ -1,7 +1,9 @@
 import 'package:direcrot_mobile_new/core/theme/theme.dart';
+import 'package:direcrot_mobile_new/features/tech_support/presentation/bloc/support_bloc.dart';
 import 'package:direcrot_mobile_new/features/tech_support/presentation/pages/tech_support_detail.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ObrashenieWidget extends StatelessWidget {
@@ -12,13 +14,17 @@ class ObrashenieWidget extends StatelessWidget {
       required this.statusName,
       required this.date,
       required this.initialMessage,
-      required this.title});
+      required this.title,
+      required this.ticketId,
+      required this.createdAt});
   final String id;
   final int statusId;
   final String statusName;
   final String date;
   final String title;
   final String initialMessage;
+  final String ticketId;
+  final DateTime createdAt;
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +34,16 @@ class ObrashenieWidget extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => TechSupportDetail(
-                    id: '$id',
-                    statusId: statusId,
-                    statusName: statusName,
-                    date: date,
-                    initialMessage: initialMessage,
-                    title: title)));
+                      id: '$id',
+                      statusId: statusId,
+                      statusName: statusName,
+                      date: date,
+                      initialMessage: initialMessage,
+                      title: title,
+                      createdAt: createdAt,
+                      ticketId: ticketId,
+                    ))).then(
+            (value) => context.read<SupportBloc>().add(TicketListFetch()));
       },
       child: Column(
         children: [
@@ -67,7 +77,7 @@ class ObrashenieWidget extends StatelessWidget {
                                     ? Color(0xFFFF7A00)
                                     : (statusId == 3)
                                         ? Color(0xFF38AE00)
-                                        : Colors.black,
+                                        : Colors.blue,
                             padding: EdgeInsets.symmetric(horizontal: 8.w),
                             child: Text(
                               statusName,

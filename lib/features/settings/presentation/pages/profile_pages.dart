@@ -102,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Профиль аккаунта',
+                          'account'.tr(),
                           style: AppTheme.mainAppBarTextStyle,
                         ),
                         Text(
@@ -219,8 +219,34 @@ class _ProfilePageState extends State<ProfilePage> {
                                                 ),
                                               ],
                                             ),
-                                            Text('620106400123'),
-                                            Text('06.01.1962'),
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Container(
+                                                      child: FittedBox(
+                                                          alignment:
+                                                              Alignment.topLeft,
+                                                          fit: BoxFit.scaleDown,
+                                                          child: Text(
+                                                              state.iin ??
+                                                                  ''))),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                Expanded(
+                                                  child: Container(
+                                                      child: FittedBox(
+                                                          alignment:
+                                                              Alignment.topLeft,
+                                                          fit: BoxFit.scaleDown,
+                                                          child: Text(
+                                                              state.birthDay ??
+                                                                  ''))),
+                                                ),
+                                              ],
+                                            ),
                                           ],
                                         ),
                                       ),

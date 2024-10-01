@@ -74,16 +74,15 @@ class MyApp extends StatelessWidget {
                   bodyMedium: TextStyle(fontSize: 14.sp, color: Colors.black)),
             ),
             home:
-                CreateTicketPage(),
-            //     IndividualScreen(
-            //   receiverEmail: 'asd',
-            //   receiverID: '2',
-            //   fullName: 'daasdasd',
-            //   initMessage: 'message',
-            // ),
-            // SplashScreen(),
+                // CreateTicketPage(),
+                //     IndividualScreen(
+                //   receiverEmail: 'asd',
+                //   receiverID: '2',
+                //   fullName: 'daasdasd',
+                //   initMessage: 'message',
+                // ),
+                SplashScreen(),
             // TechSupport(),
-
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
